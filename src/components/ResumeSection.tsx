@@ -189,26 +189,14 @@ const ResumeSection = () => {
                 
                 <div className="relative h-full">
                   <h4 className="font-bold text-xl mb-4 text-foreground/95">Technical Skills</h4>
-                  <ul className="list-disc list-inside space-y-3 text-muted-foreground/75 blur-sm font-medium">
-                    <li>ESP32 & Arduino Development</li>
-                    <li>IoT Systems & Sensor Integration</li>
-                    <li>Embedded C/C++ Programming</li>
-                    <li>Circuit Design & PCB Development</li>
-                    <li>Wireless Communication (WiFi, Bluetooth)</li>
-                    <li>Automation & Control Systems</li>
+                  <ul className="list-disc list-inside space-y-3 text-muted-foreground/90 font-medium">
+                    <li>Vibe Coding</li>
+                    <li>Internet of Things (IoT)</li>
+                    <li>Printed Circuit Board (PCB) Design</li>
+                    <li>Arduino IDE</li>
+                    <li>KiCAD</li>
+                    <li>C++</li>
                   </ul>
-                  
-                  {/* Premium overlay message covering full area */}
-                  <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-black/40 via-black/30 to-black/40 backdrop-blur-[3px] rounded-2xl">
-                    <div className="text-center p-5">
-                      <div className="text-xl font-bold text-white mb-3 drop-shadow-xl">
-                        🚧 Potential Skills
-                      </div>
-                      <div className="text-sm text-gray-200/95 drop-shadow-lg font-medium">
-                        Currently working on mastering these technologies
-                      </div>
-                    </div>
-                  </div>
                 </div>
               </div>
             </div>
