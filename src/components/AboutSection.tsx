@@ -1,4 +1,5 @@
 
+// About section component with skills display
 import { useEffect } from "react";
 import { Card } from "@/components/ui/card";
 import { Cpu, Zap, Wifi, Cog, Wrench, Lightbulb } from "lucide-react";
