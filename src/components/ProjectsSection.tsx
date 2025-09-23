@@ -28,9 +28,15 @@ const ProjectsSection = () => {
   return (
     <section id="projects" className="section bg-background py-24">
       <div className="container mx-auto px-4 md:px-6">
-        <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center animate-on-scroll">
-          Featured <span className="text-gradient">Project</span>
-        </h2>
+        <div className="flex flex-col sm:flex-row items-center justify-between mb-12 animate-on-scroll">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 sm:mb-0">
+            Featured <span className="text-gradient">Project</span>
+          </h2>
+          <Button variant="outline" className="gap-2" onClick={() => window.location.href = '/projects'}>
+            <Eye size={18} />
+            View All Featured Projects
+          </Button>
+        </div>
 
         <div className="max-w-4xl mx-auto mb-12">
           <Card className="overflow-hidden border-none shadow-lg dark-card animate-on-scroll hover:shadow-xl transition-shadow duration-300">
