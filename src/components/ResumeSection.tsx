@@ -120,22 +120,13 @@ const ResumeSection = () => {
           </div>
 
           <div>
-            <div className="flex items-center justify-between mb-6">
+            <div className="mb-6">
               <h3 className="text-2xl font-semibold flex items-center animate-on-scroll" style={{
                 transitionDelay: "600ms"
               }}>
                 <FileText className="mr-2" />
                 <span>Certifications</span>
               </h3>
-              
-              <Button asChild variant="outline" size="sm" className="animate-on-scroll" style={{
-                transitionDelay: "700ms"
-              }}>
-                <Link to="/certificates" className="flex items-center gap-2">
-                  <Eye size={16} />
-                  View All ({totalCertifications})
-                </Link>
-              </Button>
             </div>
 
             <div className="space-y-6">
@@ -166,17 +157,30 @@ const ResumeSection = () => {
                         </div>
                       </div>
                       <div className="flex justify-center sm:justify-start">
-                        <Button asChild size="sm" className="bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90 shadow-lg hover:shadow-xl transition-all duration-300 font-semibold group/btn">
+                        <Button asChild size="sm" variant="outline">
                           <a href="https://www.notion.so/My-Certificates-233fddb4a0ff804ea948ff872b0b2efc?source=copy_link" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
                             <FileText size={16} />
                             View Certificate
-                            <ArrowUpRight className="ml-1 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform duration-300" size={16} />
                           </a>
                         </Button>
                       </div>
                     </div>
                   </div>
                 </div>
+              </div>
+            </div>
+
+            <div className="mt-6 animate-on-scroll" style={{
+              transitionDelay: "900ms"
+            }}>
+              <div className="flex justify-center">
+                <Button asChild size="lg" className="w-full sm:w-auto">
+                  <Link to="/certificates" className="flex items-center gap-2">
+                    <Eye size={18} />
+                    View All Certifications ({totalCertifications})
+                    <ArrowUpRight size={18} />
+                  </Link>
+                </Button>
               </div>
             </div>
 
