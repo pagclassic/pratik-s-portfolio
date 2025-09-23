@@ -75,7 +75,7 @@ const AllProjects = () => {
         <div className="max-w-6xl mx-auto">
           <Card className="overflow-hidden border-none shadow-lg dark-card animate-on-scroll">
             <div className="flex flex-col lg:flex-row">
-              <div className="lg:w-1/2 h-80 lg:h-auto overflow-hidden">
+              <div className="lg:w-1/2 h-64 lg:h-auto overflow-hidden">
                 <div className="h-full w-full relative">
                   <img src={project.image} alt={project.title} className="w-full h-full object-cover object-center" />
                   <div className="absolute top-4 right-4 bg-black/70 text-white px-3 py-2 text-sm rounded">
@@ -87,30 +87,12 @@ const AllProjects = () => {
                 </div>
               </div>
               
-              <div className="lg:w-1/2 p-6 lg:p-10 flex flex-col justify-between">
+              <div className="lg:w-1/2 p-6 lg:p-8 flex flex-col justify-between">
                 <div>
-                  <h2 className="text-3xl font-bold mb-6">{project.title}</h2>
+                  <h2 className="text-2xl lg:text-3xl font-bold mb-4">{project.title}</h2>
                   <p className="text-muted-foreground mb-6 leading-relaxed">
-                    {project.description}
+                    Intelligent transport infrastructure that improves traffic management, enhances safety, and promotes sustainability through technology-driven solutions.
                   </p>
-                  
-                  <div className="mb-6">
-                    <h3 className="text-lg font-semibold mb-3">Key Features</h3>
-                    <ul className="space-y-2 text-sm text-muted-foreground">
-                      {project.keyFeatures.map((feature, i) => (
-                        <li key={i}>{feature}</li>
-                      ))}
-                    </ul>
-                  </div>
-
-                  <div className="mb-6">
-                    <h3 className="text-lg font-semibold mb-3">Project Impact</h3>
-                    <ul className="space-y-2 text-sm text-muted-foreground">
-                      {project.impact.map((impact, i) => (
-                        <li key={i}>{impact}</li>
-                      ))}
-                    </ul>
-                  </div>
 
                   <div className="flex flex-wrap gap-2 mb-6">
                     {project.tags.map((tag, i) => (
