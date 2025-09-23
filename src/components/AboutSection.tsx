@@ -26,29 +26,32 @@ const AboutSection = () => {
     };
   }, []);
 
-  const skills = [
+  const masteredSkills = [
     {
       name: "ESP32",
       icon: <Cpu className="text-primary" />
     },
     {
-      name: "IoT Systems",
+      name: "Internet of Things (IoT)",
       icon: <Wifi className="text-primary" />
     },
     {
-      name: "Embedded Systems",
+      name: "Raspberry Pi",
       icon: <Zap className="text-accent" />
     },
     {
-      name: "Sensor Integration",
+      name: "C++",
       icon: <Cog className="text-accent" />
-    },
+    }
+  ];
+
+  const potentialSkills = [
     {
-      name: "Automation",
+      name: "PCB Design",
       icon: <Wrench className="text-primary" />
     },
     {
-      name: "Smart Solutions",
+      name: "Arduino IDE",
       icon: <Lightbulb className="text-accent" />
     }
   ];
@@ -79,23 +82,36 @@ I'm excited to keep learning, building impactful projects, and growing in the fi
             <Card className="p-6 h-full flex flex-col my-[45px] relative overflow-hidden">
               <h3 className="text-xl font-medium mb-6">Skills & Expertise</h3>
               
-              <div className="grid grid-cols-2 gap-4 blur-sm">
-                {skills.map((skill, index) => (
-                  <div key={index} className="flex items-center gap-2 p-3 rounded-lg transition-colors bg-zinc-900">
+              {/* Mastered Skills - Unblurred */}
+              <div className="grid grid-cols-2 gap-4 mb-4">
+                {masteredSkills.map((skill, index) => (
+                  <div key={index} className="flex items-center gap-2 p-3 rounded-lg transition-colors bg-primary/10 border border-primary/20">
                     {skill.icon}
-                    <span>{skill.name}</span>
+                    <span className="text-sm font-medium">{skill.name}</span>
                   </div>
                 ))}
               </div>
               
-              {/* Overlay message */}
-              <div className="absolute inset-0 flex items-center justify-center bg-black/20 backdrop-blur-[1px]">
-                <div className="text-center p-4">
-                  <div className="text-lg font-semibold text-white mb-2">
-                    🚧 Potential Skills
-                  </div>
-                  <div className="text-sm text-gray-300">
-                    Currently working on mastering these technologies
+              {/* Potential Skills - Blurred */}
+              <div className="relative">
+                <div className="grid grid-cols-2 gap-4 blur-sm">
+                  {potentialSkills.map((skill, index) => (
+                    <div key={index} className="flex items-center gap-2 p-3 rounded-lg transition-colors bg-accent/10 border border-accent/20">
+                      {skill.icon}
+                      <span className="text-sm">{skill.name}</span>
+                    </div>
+                  ))}
+                </div>
+                
+                {/* Overlay message for potential skills only */}
+                <div className="absolute inset-0 flex items-center justify-center bg-black/20 backdrop-blur-[1px] rounded-lg">
+                  <div className="text-center p-2">
+                    <div className="text-sm font-semibold text-white mb-1">
+                      🚧 Potential Skills
+                    </div>
+                    <div className="text-xs text-gray-300">
+                      Currently working on mastering
+                    </div>
                   </div>
                 </div>
               </div>
