@@ -64,24 +64,48 @@ const ProjectDetail = () => {
       image: "https://images.unsplash.com/photo-1501785888041-af3ef285b470?q=80&w=2070&auto=format&fit=crop",
       overview: "The TerraShield Landslide Early Warning System focuses on protecting vulnerable communities in hilly regions by combining IoT sensors, AI analytics, and smart alerting mechanisms. It provides real-time monitoring of slopes, improves disaster preparedness, and ensures timely evacuation through last-mile alerts.",
       keyFeatures: [
-        { icon: Zap, title: "⛰️ Multi-Sensor Monitoring", description: "Tilt (MPU6050), soil moisture, vibration, and GPS data" },
-        { icon: Wifi, title: "📡 LoRa Communication", description: "Long-range, low-power transmission between nodes and gateway" },
-        { icon: Target, title: "🧠 AI-Driven Analytics", description: "Detects slope instability patterns and reduces false alarms" },
-        { icon: Camera, title: "🔔 Community-First Alerts", description: "Siren, SMS, and WhatsApp alerts for immediate action" },
-        { icon: null, title: "🌞 Sustainable Power", description: "Solar-powered IoT nodes with rugged enclosures" }
+        { icon: null, title: "⛰️ Multi-Sensor Monitoring", description: "Tilt (MPU6050), soil moisture, vibration, and GPS data for ground movement detection." },
+        { icon: null, title: "📡 LoRa Communication", description: "Long-range, low-power data transmission between sensor nodes and gateway." },
+        { icon: null, title: "🧠 AI-Driven Analytics", description: "Machine learning models analyze sensor + GPS patterns to reduce false alarms." },
+        { icon: null, title: "📍 GPS Integration", description: "Tracks sensor node positioning and detects slope displacement." },
+        { icon: null, title: "🔔 Community-First Alerts", description: "Siren, SMS, and WhatsApp alerts for immediate action, even offline." },
+        { icon: null, title: "🌞 Sustainable Power", description: "Solar-powered IoT nodes with low-cost, rugged hardware for remote deployment." }
       ],
-      hardware: ["ESP32", "Arduino", "MPU6050", "LoRa Modules", "GPS"],
-      software: ["Python", "Supabase", "AI Analytics", "Grafana"],
+      hardware: [
+        "ESP32",
+        "LoRa (SX1276 / RFM95)",
+        "MPU6050 (tilt/IMU)",
+        "Capacitive Soil Moisture Probe",
+        "Piezo Vibration Sensor / Geophone",
+        "GPS (Neo-6M)",
+        "Raspberry Pi (Gateway)",
+        "Solar Panels + LiFePO4 Battery"
+      ],
+      software: [
+        "Arduino IDE / PlatformIO",
+        "TinyGPS++ (GPS)",
+        "Wire.h (I2C)",
+        "LoRa.h",
+        "Python (FastAPI, Pandas, Scikit-learn)",
+        "Supabase (backend integration)",
+        "MQTT (Mosquitto)",
+        "InfluxDB (time-series database)",
+        "Grafana + React (dashboard & visualization)"
+      ],
       impact: [
-        { icon: "⚠️", text: "Early detection of landslide risks and slope movement" },
-        { icon: "📲", text: "Reliable last-mile alerts even in offline conditions" },
-        { icon: "🧠", text: "Reduced false alarms with AI-based multi-sensor fusion" },
-        { icon: "☀️", text: "Low-cost, solar-powered, and scalable for rural deployment" }
+        { icon: "⚠️", text: "Early detection of slope movement and landslide risk" },
+        { icon: "📲", text: "Reliable last-mile alerts reaching 90%+ households in drills" },
+        { icon: "🧠", text: "Reduced false alarms with AI-based analysis" },
+        { icon: "☀️", text: "Low-cost & solar-powered for rural and remote areas" },
+        { icon: "🌍", text: "Scalable design for multiple villages and districts" }
       ],
       role: [
-        "🔧 Designed the multi-sensor IoT architecture",
-        "🔧 Implemented LoRa communication protocol",
-        "🔧 Developed AI analytics for slope stability monitoring"
+        "🔧 Designed and assembled the hardware architecture (ESP32, sensors, LoRa)",
+        "🛰️ Integrated GPS, MPU6050, and soil moisture sensors with ESP32",
+        "📡 Implemented LoRa transmission & reception for reliable data flow",
+        "🐍 Worked on the backend: MQTT → Supabase → InfluxDB pipeline",
+        "💻 Built basic alert logic and dashboard for real-time monitoring",
+        "⚡ Learned how to set up Raspberry Pi as a gateway + server"
       ]
     }
   };

@@ -75,7 +75,7 @@ const AllProjects = () => {
         <div className="max-w-6xl mx-auto space-y-8">
           {projects.map((project) => (
             <Card key={project.id} className="overflow-hidden border-none shadow-lg dark-card animate-on-scroll">
-              <div className="flex flex-col lg:flex-row h-80">
+              <div className="flex flex-col lg:flex-row min-h-[28rem]">
                 <div className="lg:w-1/2 h-64 lg:h-auto overflow-hidden">
                   <div className="h-full w-full relative">
                     <img src={project.image} alt={project.title} className="w-full h-full object-cover object-center" />
