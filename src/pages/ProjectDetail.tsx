@@ -104,7 +104,6 @@ const ProjectDetail = () => {
         "🛰️ Integrated GPS, MPU6050, and soil moisture sensors with ESP32",
         "📡 Implemented LoRa transmission & reception for reliable data flow",
         "🐍 Worked on the backend: MQTT → Supabase → InfluxDB pipeline",
-        "💻 Built basic alert logic and dashboard for real-time monitoring",
         "⚡ Learned how to set up Raspberry Pi as a gateway + server"
       ]
     }
