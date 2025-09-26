@@ -31,7 +31,7 @@ const AllProjects = () => {
   }, []);
 
   const project = {
-    id: 2,
+    id: 1,
     title: "🌍 Dipex Smart & Sustainable Highway",
     category: "IOT & AI PROJECT",
     description: "Intelligent transport infrastructure that improves traffic management, enhances safety, and promotes sustainability through technology-driven solutions. Features AI-based dynamic traffic signals, YOLO-powered vehicle tracking, automated speed-breaking system, solar-powered signals, and ESP32-based IoT integration for smart city applications.",
@@ -52,7 +52,30 @@ const AllProjects = () => {
       "⚡ Energy-efficient with renewable power usage",
       "🛡️ Enhanced road safety through automation and AI",
       "📊 Scalable design for smart cities and national highways"
-    ]
+    ],
+   id: 2,
+  title: "🌍 TerraShield — AI + IoT Landslide Early Warning System",
+  category: "IOT & AI PROJECT",
+  description: "The TerraShield Landslide Early Warning System focuses on protecting vulnerable communities in hilly regions by combining IoT sensors, AI analytics, and smart alerting mechanisms. It provides real-time monitoring of slopes, improves disaster preparedness, and ensures timely evacuation through last-mile alerts.",
+  tags: ["ESP32", "Arduino", "LoRa", "GPS", "Python", "IoT", "Supabase", "AI", "Sustainability", "Grafana"],
+  image: "https://images.unsplash.com/photo-1501785888041-af3ef285b470?q=80&w=2070&auto=format&fit=crop",
+  codeUrl: "#",
+  demoUrl: "",
+  hardwareProject: true,
+  keyFeatures: [
+    "⛰️ Multi-Sensor Monitoring – Tilt (MPU6050), soil moisture, vibration, and GPS data",
+    "📡 LoRa Communication – Long-range, low-power transmission between nodes and gateway",
+    "🧠 AI-Driven Analytics – Detects slope instability patterns and reduces false alarms",
+    "🔔 Community-First Alerts – Siren, SMS, and WhatsApp alerts for immediate action",
+    "🌞 Sustainable Power – Solar-powered IoT nodes with rugged enclosures"
+  ],
+  impact: [
+    "⚠️ Early detection of landslide risks and slope movement",
+    "📲 Reliable last-mile alerts even in offline conditions",
+    "🧠 Reduced false alarms with AI-based multi-sensor fusion",
+    "☀️ Low-cost, solar-powered, and scalable for rural deployment",
+    "🌍 Potential to save lives and protect infrastructure in hilly regions"
+  ]
   };
   
   return (
