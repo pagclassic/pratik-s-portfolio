@@ -173,15 +173,13 @@ const ResumeSection = () => {
             <div className="mt-6 animate-on-scroll" style={{
               transitionDelay: "900ms"
             }}>
-              <div className="flex justify-center">
-                <Button asChild size="lg" className="w-full sm:w-auto">
-                  <Link to="/certificates" className="flex items-center gap-2">
-                    <Eye size={18} />
-                    View All Certifications ({totalCertifications})
-                    <ArrowUpRight size={18} />
-                  </Link>
-                </Button>
-              </div>
+              <Button asChild size="lg" className="w-full">
+                <Link to="/certificates" className="flex items-center justify-center gap-2">
+                  <Eye size={18} />
+                  View All Certifications ({totalCertifications})
+                  <ArrowUpRight size={18} />
+                </Link>
+              </Button>
             </div>
 
             <div className="mt-8 animate-on-scroll" style={{
