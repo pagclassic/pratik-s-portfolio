@@ -5,6 +5,7 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Github, Zap, Camera, Wifi, Wrench, Target, Lightbulb, User, TrendingUp, Image } from "lucide-react";
 import Navbar from "@/components/Navbar";
+import { getProjectById } from "@/data/projects";
 
 const ProjectDetail = () => {
   const { id } = useParams();
@@ -36,83 +37,7 @@ const ProjectDetail = () => {
     };
   }, [id]);
 
-  const projects = {
-    "1": {
-      title: "🌍 Dipex Smart & Sustainable Highway",
-      image: "https://images.unsplash.com/photo-1449824913935-59a10b8d2000?q=80&w=2070&auto=format&fit=crop",
-      overview: "The Dipex Smart & Sustainable Highway project focuses on building an intelligent transport infrastructure that improves traffic management, enhances safety, and promotes sustainability through technology-driven solutions.",
-      keyFeatures: [
-        { icon: Zap, title: "🚦 Smart Traffic Management", description: "AI-based dynamic traffic signals for smoother vehicle flow." },
-        { icon: Camera, title: "📷 Camera-Based Vehicle Tracking", description: "Real-time car movement and number plate recognition using YOLO and computer vision." },
-        { icon: Wrench, title: "🛑 Sustainable Speed-Breaking System", description: "speed-breakers that can genrate energy when vehicle pass on." },
-        { icon: Wifi, title: "📡 IoT Integration", description: "Arduino-based system for data collection, signal control, and remote monitoring." },
-        { icon: null, title: "🌱 Sustainability", description: "Solar-powered signal systems and energy-efficient IoT sensors." }
-      ],
-      hardware: ["Arduino", "Servo Motors", "IR Sensors", "Camera Modules"],
-      software: ["Python", "OpenCV", "YOLO", "Arduino IDE"],
-      impact: [
-        { icon: "🚗", text: "Reduced traffic congestion and accidents" },
-        { icon: "⚡", text: "Energy-efficient with renewable power usage" },
-        { icon: "🛡️", text: "Enhanced road safety through automation and AI" },
-        { icon: "📊", text: "Scalable design for smart cities and national highways" }
-      ],
-      role: [
-        "🔧 Designed the hardware architecture",
-        "🔧 Implemented YOLO-based number plate recognition",
-        "🔧 Developed the Arduino logic for automated signals and speed breakers"
-      ]
-    },
-    "2": {
-      title: "🌍 TerraShield — AI + IoT Landslide Early Warning System",
-      image: "https://images.unsplash.com/photo-1501785888041-af3ef285b470?q=80&w=2070&auto=format&fit=crop",
-      overview: "The TerraShield Landslide Early Warning System focuses on protecting vulnerable communities in hilly regions by combining IoT sensors, AI analytics, and smart alerting mechanisms. It provides real-time monitoring of slopes, improves disaster preparedness, and ensures timely evacuation through last-mile alerts.",
-      keyFeatures: [
-        { icon: null, title: "⛰️ Multi-Sensor Monitoring", description: "Tilt (MPU6050), soil moisture, vibration, and GPS data for ground movement detection." },
-        { icon: null, title: "📡 LoRa Communication", description: "Long-range, low-power data transmission between sensor nodes and gateway." },
-        { icon: null, title: "🧠 AI-Driven Analytics", description: "Machine learning models analyze sensor + GPS patterns to reduce false alarms." },
-        { icon: null, title: "📍 GPS Integration", description: "Tracks sensor node positioning and detects slope displacement." },
-        { icon: null, title: "🔔 Community-First Alerts", description: "Siren, SMS, and WhatsApp alerts for immediate action, even offline." },
-        { icon: null, title: "🌞 Sustainable Power", description: "Solar-powered IoT nodes with low-cost, rugged hardware for remote deployment." }
-      ],
-      hardware: [
-        "ESP32",
-        "LoRa (SX1276 / RFM95)",
-        "MPU6050 (tilt/IMU)",
-        "Capacitive Soil Moisture Probe",
-        "Piezo Vibration Sensor / Geophone",
-        "GPS (Neo-6M)",
-        "Raspberry Pi (Gateway)",
-        "Solar Panels + LiFePO4 Battery"
-      ],
-      software: [
-        "Arduino IDE / PlatformIO",
-        "TinyGPS++ (GPS)",
-        "Wire.h (I2C)",
-        "LoRa.h",
-        "Python (FastAPI, Pandas, Scikit-learn)",
-        "Supabase (backend integration)",
-        "MQTT (Mosquitto)",
-        "InfluxDB (time-series database)",
-        "Grafana + React (dashboard & visualization)"
-      ],
-      impact: [
-        { icon: "⚠️", text: "Early detection of slope movement and landslide risk" },
-        { icon: "📲", text: "Reliable last-mile alerts reaching 90%+ households in drills" },
-        { icon: "🧠", text: "Reduced false alarms with AI-based analysis" },
-        { icon: "☀️", text: "Low-cost & solar-powered for rural and remote areas" },
-        { icon: "🌍", text: "Scalable design for multiple villages and districts" }
-      ],
-      role: [
-        "🔧 Designed and assembled the hardware architecture (ESP32, sensors, LoRa)",
-        "🛰️ Integrated GPS, MPU6050, and soil moisture sensors with ESP32",
-        "📡 Implemented LoRa transmission & reception for reliable data flow",
-        "🐍 Worked on the backend: MQTT → Supabase → InfluxDB pipeline",
-        "⚡ Learned how to set up Raspberry Pi as a gateway + server"
-      ]
-    }
-  };
-
-  const project = projects[id as keyof typeof projects];
+  const project = getProjectById(Number(id));
 
   if (!project) {
     return (
@@ -165,7 +90,7 @@ const ProjectDetail = () => {
               <h2 className="text-2xl font-bold">Overview</h2>
             </div>
             <p className="text-muted-foreground leading-relaxed text-lg">
-              {project.overview}
+              {project.description}
             </p>
           </Card>
 
@@ -177,16 +102,17 @@ const ProjectDetail = () => {
             </div>
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {project.keyFeatures.map((feature, index) => (
+              {project.keyFeatures?.map((feature, index) => (
                 <div key={index} className="flex items-start gap-4 p-4 rounded-lg bg-muted/30">
-                  {feature.icon && <feature.icon className="w-6 h-6 text-accent mt-1" />}
-                  {!feature.icon && <span className="text-2xl">{feature.title.split(' ')[0]}</span>}
+                  <span className="text-2xl">{feature.title.split(' ')[0]}</span>
                   <div>
                     <h3 className="font-semibold mb-2">{feature.title}</h3>
                     <p className="text-muted-foreground text-sm">{feature.description}</p>
                   </div>
                 </div>
-              ))}
+              )) || (
+                <p className="text-muted-foreground col-span-2">Key features not available for this project.</p>
+              )}
             </div>
           </Card>
 
@@ -199,20 +125,9 @@ const ProjectDetail = () => {
             
             <div className="space-y-4">
               <div>
-                <h3 className="font-semibold mb-3">Hardware</h3>
+                <h3 className="font-semibold mb-3">Technologies Used</h3>
                 <div className="flex flex-wrap gap-2">
-                  {project.hardware.map((tech, i) => (
-                    <span key={i} className="px-3 py-1 bg-accent/10 text-accent rounded-full text-sm">
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-              </div>
-              
-              <div>
-                <h3 className="font-semibold mb-3">Software</h3>
-                <div className="flex flex-wrap gap-2">
-                  {project.software.map((tech, i) => (
+                  {project.tags.map((tech, i) => (
                     <span key={i} className="px-3 py-1 bg-accent/10 text-accent rounded-full text-sm">
                       {tech}
                     </span>
@@ -230,12 +145,14 @@ const ProjectDetail = () => {
             </div>
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {project.impact.map((impact, index) => (
+              {project.impact?.map((impact, index) => (
                 <div key={index} className="flex items-center gap-3">
                   <span className="text-2xl">{impact.icon}</span>
                   <span className="text-muted-foreground">{impact.text}</span>
                 </div>
-              ))}
+              )) || (
+                <p className="text-muted-foreground col-span-2">Impact details not available for this project.</p>
+              )}
             </div>
           </Card>
 
@@ -247,12 +164,18 @@ const ProjectDetail = () => {
             </div>
             
             <ul className="space-y-3">
-              {project.role.map((roleItem, index) => (
-                <li key={index} className="flex items-start gap-3">
-                  <span className="text-accent mt-1">🔧</span>
-                  <span className="text-muted-foreground">{roleItem.replace('🔧 ', '')}</span>
-                </li>
-              ))}
+              <li className="flex items-start gap-3">
+                <span className="text-accent mt-1">🔧</span>
+                <span className="text-muted-foreground">Led the design and development of the complete system architecture</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <span className="text-accent mt-1">💻</span>
+                <span className="text-muted-foreground">Implemented both hardware and software components</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <span className="text-accent mt-1">🧪</span>
+                <span className="text-muted-foreground">Conducted extensive testing and optimization</span>
+              </li>
             </ul>
           </Card>
 

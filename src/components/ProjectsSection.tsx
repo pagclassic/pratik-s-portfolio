@@ -2,10 +2,13 @@
 import { useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Code, Eye } from "lucide-react";
+import { Eye } from "lucide-react";
 import { Link } from "react-router-dom";
+import { getFeaturedProjects } from "@/data/projects";
 
 const ProjectsSection = () => {
+  const featuredProjects = getFeaturedProjects(3);
+
   useEffect(() => {
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
@@ -31,66 +34,47 @@ const ProjectsSection = () => {
       <div className="container mx-auto px-4 md:px-6">
         <div className="flex flex-col sm:flex-row items-center justify-between mb-12 animate-on-scroll">
           <h2 className="text-3xl md:text-4xl font-bold mb-4 sm:mb-0">
-            Featured <span className="text-gradient">Project</span>
+            Featured <span className="text-gradient">Projects</span>
           </h2>
           <Button asChild variant="outline" className="gap-2">
             <Link to="/projects" className="flex items-center gap-2">
               <Eye size={18} />
-              View All Featured Projects
+              View All Projects
             </Link>
           </Button>
         </div>
 
-        <div className="max-w-4xl mx-auto mb-12">
-          <Card className="overflow-hidden border-none shadow-lg dark-card animate-on-scroll hover:shadow-xl transition-shadow duration-300">
-            <div className="h-64 md:h-80 overflow-hidden relative">
-              <img 
-                src="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?q=80&w=2070&auto=format&fit=crop" 
-                alt="Dipex Smart & Sustainable Highway" 
-                className="w-full h-full object-cover object-center hover:scale-105 transition-transform duration-300" 
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-              <div className="absolute bottom-4 left-4 text-white">
-                <div className="text-xs uppercase tracking-wide mb-1">🌍 Featured Project</div>
-                <h3 className="text-2xl md:text-3xl font-bold">Dipex Smart & Sustainable Highway</h3>
-              </div>
-            </div>
-            
-            <div className="p-6 md:p-8">
-              <div className="mb-6">
-                <p className="text-lg text-muted-foreground mb-4">
-                  Intelligent transport infrastructure that improves traffic management, enhances safety, and promotes sustainability through technology-driven solutions.
-                </p>
-                
-                <div className="flex flex-wrap gap-2 mb-6">
-                  {[ "Arduino", "YOLO", "OpenCV", "Python", "Computer Vision"].map((tag, i) => (
-                    <span key={i} className="text-xs px-3 py-1 bg-accent/10 text-accent rounded-full">
-                      {tag}
-                    </span>
-                  ))}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          {featuredProjects.map((project, index) => (
+            <Card key={project.id} className="overflow-hidden border-none shadow-lg dark-card animate-on-scroll hover:shadow-xl transition-shadow duration-300" style={{
+              transitionDelay: `${index * 200}ms`
+            }}>
+              <div className="h-48 overflow-hidden relative">
+                <img 
+                  src={project.image}
+                  alt={project.title} 
+                  className="w-full h-full object-cover object-center hover:scale-105 transition-transform duration-300" 
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                <div className="absolute bottom-4 left-4 text-white">
+                  <div className="text-xs uppercase tracking-wide mb-1">{project.category}</div>
                 </div>
               </div>
-
-              <div className="flex flex-col sm:flex-row items-center gap-4 mt-6">
-                <div className="flex gap-2 w-full sm:w-auto">
-                  <Link to="/projects/1" className="flex-1 sm:flex-none">
+              
+              <div className="p-6">
+                <h3 className="text-xl font-bold mb-4 line-clamp-2">{project.title}</h3>
+                
+                <div className="mt-4">
+                  <Link to={`/projects/${project.id}`} className="w-full block">
                     <Button className="w-full gap-2">
                       <Eye size={18} />
                       View Details
                     </Button>
                   </Link>
-                  <Button 
-                    variant="outline" 
-                    className="gap-2" 
-                    onClick={() => window.open("#", "_blank")}
-                  >
-                    <Code size={18} />
-                    Code
-                  </Button>
                 </div>
               </div>
-            </div>
-          </Card>
+            </Card>
+          ))}
         </div>
       </div>
     </section>

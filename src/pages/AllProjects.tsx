@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Eye, Code, ArrowLeft } from "lucide-react";
 import { Link } from "react-router-dom";
 import Navbar from "@/components/Navbar";
+import { projects } from "@/data/projects";
 
 const AllProjects = () => {
   useEffect(() => {
@@ -30,30 +31,6 @@ const AllProjects = () => {
     };
   }, []);
 
-  const projects = [
-    {
-      id: 1,
-      title: "🌍 Dipex Smart & Sustainable Highway",
-      category: "IOT & AI PROJECT",
-      description: "Intelligent transport infrastructure that improves traffic management, enhances safety, and promotes sustainability through technology-driven solutions. Features AI-based dynamic traffic signals, YOLO-powered vehicle tracking, automated speed-breaking system, solar-powered signals, and ESP32-based IoT integration for smart city applications.",
-      tags: ["ESP32", "Arduino", "YOLO", "OpenCV", "Python", "IoT", "Blynk", "Computer Vision", "AI", "Sustainability"],
-      image: "https://images.unsplash.com/photo-1449824913935-59a10b8d2000?q=80&w=2070&auto=format&fit=crop",
-      codeUrl: "#",
-      demoUrl: "",
-      hardwareProject: true
-    },
-    {
-      id: 2,
-      title: "🌍 TerraShield — AI + IoT Landslide Early Warning System",
-      category: "IOT & AI PROJECT",
-      description: "The TerraShield Landslide Early Warning System focuses on protecting vulnerable communities in hilly regions by combining IoT sensors, AI analytics, and smart alerting mechanisms. It provides real-time monitoring of slopes, improves disaster preparedness, and ensures timely evacuation through last-mile alerts.",
-      tags: ["ESP32", "Arduino", "LoRa", "GPS", "Python", "IoT", "Supabase", "AI", "Sustainability", "Grafana"],
-      image: "https://images.unsplash.com/photo-1501785888041-af3ef285b470?q=80&w=2070&auto=format&fit=crop",
-      codeUrl: "#",
-      demoUrl: "",
-      hardwareProject: true
-    }
-  ];
   
   return (
     <div className="min-h-screen bg-background">
