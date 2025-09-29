@@ -10,6 +10,9 @@ const ProjectDetail = () => {
   const { id } = useParams();
 
   useEffect(() => {
+    // Scroll to top when component mounts
+    window.scrollTo(0, 0);
+
     // Initialize scroll animation observer
     const observer = new IntersectionObserver(
       (entries) => {
@@ -31,7 +34,7 @@ const ProjectDetail = () => {
         observer.unobserve(el);
       });
     };
-  }, []);
+  }, [id]);
 
   const projects = {
     "1": {
