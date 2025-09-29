@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Code, Eye } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const ProjectsSection = () => {
   useEffect(() => {
@@ -32,9 +33,11 @@ const ProjectsSection = () => {
           <h2 className="text-3xl md:text-4xl font-bold mb-4 sm:mb-0">
             Featured <span className="text-gradient">Project</span>
           </h2>
-          <Button variant="outline" className="gap-2" onClick={() => window.location.href = '/projects'}>
-            <Eye size={18} />
-            View All Featured Projects
+          <Button asChild variant="outline" className="gap-2">
+            <Link to="/projects" className="flex items-center gap-2">
+              <Eye size={18} />
+              View All Featured Projects
+            </Link>
           </Button>
         </div>
 
@@ -70,12 +73,12 @@ const ProjectsSection = () => {
 
               <div className="flex flex-col sm:flex-row items-center gap-4 mt-6">
                 <div className="flex gap-2 w-full sm:w-auto">
-                  <a href="/projects/2" className="flex-1 sm:flex-none">
+                  <Link to="/projects/1" className="flex-1 sm:flex-none">
                     <Button className="w-full gap-2">
                       <Eye size={18} />
                       View Details
                     </Button>
-                  </a>
+                  </Link>
                   <Button 
                     variant="outline" 
                     className="gap-2" 
