@@ -2,15 +2,40 @@
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Link, useLocation } from "react-router-dom";
 import ThemeToggle from "./ThemeToggle";
 import LogoAnimation from "./LogoAnimation";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const location = useLocation();
+  const isHomePage = location.pathname === '/';
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
+  };
+
+  const handleNavigation = (href: string) => {
+    if (isHomePage) {
+      // On homepage, scroll to section
+      const element = document.querySelector(href);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    } else {
+      // On other pages, navigate to homepage with section
+      window.location.href = `/${href}`;
+    }
+    setIsOpen(false);
+  };
+
+  const handleLogoClick = () => {
+    if (isHomePage) {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+      window.location.href = '/';
+    }
   };
 
   useEffect(() => {
@@ -44,21 +69,21 @@ const Navbar = () => {
     >
       <div className="px-4 md:px-6 py-4">
         <div className="flex items-center justify-between">
-          <a href="#home" className="font-bold">
+          <button onClick={handleLogoClick} className="font-bold">
             <LogoAnimation />
-          </a>
+          </button>
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
             <div className="flex items-center space-x-8">
               {navItems.map((item) => (
-                <a
+                <button
                   key={item.href}
-                  href={item.href}
+                  onClick={() => handleNavigation(item.href)}
                   className="text-sm font-medium hover:text-accent transition-colors"
                 >
                   {item.label}
-                </a>
+                </button>
               ))}
             </div>
             <ThemeToggle />
@@ -78,14 +103,13 @@ const Navbar = () => {
           <div className="md:hidden mt-4 py-4 animate-fade-in glassmorphism rounded-lg">
             <nav className="flex flex-col space-y-4 px-4">
               {navItems.map((item) => (
-                <a
+                <button
                   key={item.href}
-                  href={item.href}
-                  className="text-base font-medium hover:text-accent transition-colors"
-                  onClick={() => setIsOpen(false)}
+                  onClick={() => handleNavigation(item.href)}
+                  className="text-base font-medium hover:text-accent transition-colors text-left"
                 >
                   {item.label}
-                </a>
+                </button>
               ))}
             </nav>
           </div>
