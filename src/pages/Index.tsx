@@ -37,6 +37,24 @@ const Index = () => {
       anchor.addEventListener('click', handleAnchorClick as EventListener);
     });
 
+    // Scroll to section if hash is present (when coming from subpages)
+    const scrollToHash = () => {
+      if (window.location.hash) {
+        const targetId = window.location.hash.substring(1);
+        const targetElement = document.getElementById(targetId);
+        if (targetElement) {
+          window.scrollTo({
+            top: targetElement.offsetTop - 80,
+            behavior: 'smooth'
+          });
+        }
+      }
+    };
+
+    // Run on mount and on hash changes
+    requestAnimationFrame(scrollToHash);
+    window.addEventListener('hashchange', scrollToHash);
+
     // Initialize scroll animation observer
     const observer = new IntersectionObserver(
       (entries) => {
@@ -58,6 +76,8 @@ const Index = () => {
       document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.removeEventListener('click', handleAnchorClick as EventListener);
       });
+
+      window.removeEventListener('hashchange', scrollToHash);
       
       document.querySelectorAll(".animate-on-scroll").forEach((el) => {
         observer.unobserve(el);
