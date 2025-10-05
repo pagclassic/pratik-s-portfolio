@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import AnimatedBackground from "@/components/AnimatedBackground";
+import ScrollToTop from "@/components/ScrollToTop";
 const AllCertificates = () => {
   useEffect(() => {
     const observer = new IntersectionObserver(entries => {
@@ -102,17 +103,14 @@ const AllCertificates = () => {
             <p className="text-muted-foreground text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
               A comprehensive collection of my professional achievements, certifications, and learning milestones
             </p>
-            <div className="flex justify-center gap-6 mt-6 text-sm text-muted-foreground">
+            <div className="flex flex-wrap justify-center gap-4 md:gap-6 mt-6 text-sm text-muted-foreground">
               <div className="flex items-center gap-2">
-                <div className="w-2 h-2 rounded-full bg-emerald-400"></div>
                 <span>{certificationData.filter(cert => cert.type === 'competition').length} Competitions</span>
               </div>
               <div className="flex items-center gap-2">
-                <div className="w-2 h-2 rounded-full bg-blue-400"></div>
                 <span>{certificationData.filter(cert => cert.type === 'hackathon').length} Hackathons</span>
               </div>
               <div className="flex items-center gap-2">
-                <div className="w-2 h-2 rounded-full bg-purple-400"></div>
                 <span>{certificationData.filter(cert => cert.type === 'course').length} Courses</span>
               </div>
             </div>
@@ -191,6 +189,7 @@ const AllCertificates = () => {
       </main>
       
       <Footer />
+      <ScrollToTop />
     </div>;
 };
 export default AllCertificates;
