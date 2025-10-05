@@ -28,28 +28,28 @@ const ThemeToggle = () => {
       </Button>
 
       <Dialog open={showDialog} onOpenChange={setShowDialog}>
-        <DialogContent className="sm:max-w-md border-0 bg-gradient-to-br from-gray-900/95 via-slate-800/95 to-gray-900/95 backdrop-blur-xl shadow-2xl rounded-3xl overflow-hidden animate-scale-in">
-          <div className="absolute inset-0 bg-gradient-to-br from-yellow-500/10 via-orange-500/10 to-red-500/10 animate-pulse" />
+        <DialogContent className="sm:max-w-md bg-card/95 backdrop-blur-xl border-2 border-primary/20 shadow-2xl shadow-primary/10 rounded-2xl overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-accent/5" />
           <div className="relative z-10">
-            <DialogHeader className="text-center pb-6 pt-4">
-              <div className="mx-auto mb-4 w-16 h-16 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-full flex items-center justify-center shadow-lg animate-bounce">
-                <span className="text-2xl">🤨</span>
+            <DialogHeader className="text-center pb-4 pt-2">
+              <div className="mx-auto mb-4 w-16 h-16 bg-gradient-to-br from-primary/20 to-accent/20 rounded-full flex items-center justify-center shadow-lg">
+                <span className="text-3xl">🤨</span>
               </div>
-              <DialogTitle className="text-3xl font-bold bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 bg-clip-text text-transparent leading-tight">
+              <DialogTitle className="text-2xl font-bold bg-gradient-to-r from-primary via-primary/80 to-accent bg-clip-text text-transparent leading-tight">
                 Really? Light Mode?
               </DialogTitle>
-              <DialogDescription className="text-gray-200 text-lg font-medium mt-4 leading-relaxed">
+              <DialogDescription className="text-foreground/80 text-base font-medium mt-4 leading-relaxed">
                 Are you literally a developer? You want to switch to light mode? Huhh, you failed as a developer!
               </DialogDescription>
             </DialogHeader>
             
-            <DialogFooter className="justify-center pt-6 pb-4">
+            <DialogFooter className="justify-center pt-4 pb-2">
               <Button 
                 onClick={handleDismiss} 
                 variant="outline"
-                className="bg-gradient-to-r from-gray-700 to-gray-800 hover:from-gray-600 hover:to-gray-700 text-white font-bold py-3 px-8 rounded-2xl transition-all duration-300 shadow-xl hover:shadow-2xl transform hover:scale-105 border-2 border-gray-600/50"
+                className="bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90 text-primary-foreground font-semibold py-5 px-6 rounded-xl transition-all duration-300 shadow-lg shadow-primary/20 hover:shadow-xl hover:shadow-primary/30 transform hover:scale-[1.02] border-primary/30"
               >
-                <span className="text-lg">Sorry, I will not do it again</span>
+                <span className="text-base">Sorry, I will not do it again</span>
               </Button>
             </DialogFooter>
           </div>
