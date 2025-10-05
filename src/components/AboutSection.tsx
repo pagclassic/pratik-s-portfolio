@@ -80,13 +80,13 @@ I'm excited to keep learning, building impactful projects, and growing in the fi
           <div className="w-full md:w-1/2 animate-on-scroll h-full" style={{
             transitionDelay: "600ms"
           }}>
-            <Card className="p-6 h-full flex flex-col my-[45px] relative overflow-hidden">
-              <h3 className="text-xl font-medium mb-6">Skills & Expertise</h3>
+            <Card className="p-4 md:p-6 h-full flex flex-col my-4 md:my-[45px] relative overflow-hidden">
+              <h3 className="text-lg md:text-xl font-medium mb-4 md:mb-6">Skills & Expertise</h3>
               
               {/* Mastered Skills - Unblurred */}
-              <div className="grid grid-cols-2 gap-4 mb-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4 mb-4">
                 {masteredSkills.map((skill, index) => (
-                  <div key={index} className="flex items-center gap-2 p-3 rounded-lg transition-colors bg-primary/10 border border-primary/20">
+                  <div key={index} className="flex items-center gap-2 p-2.5 md:p-3 rounded-lg transition-colors bg-primary/10 border border-primary/20">
                     {skill.icon}
                     <span className="text-sm font-medium">{skill.name}</span>
                   </div>
@@ -95,9 +95,9 @@ I'm excited to keep learning, building impactful projects, and growing in the fi
               
               {/* Potential Skills - Blurred */}
               <div className="relative">
-                <div className="grid grid-cols-2 gap-4 blur-sm">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4 blur-sm">
                   {potentialSkills.map((skill, index) => (
-                    <div key={index} className="flex items-center gap-2 p-3 rounded-lg transition-colors bg-accent/10 border border-accent/20">
+                    <div key={index} className="flex items-center gap-2 p-2.5 md:p-3 rounded-lg transition-colors bg-accent/10 border border-accent/20">
                       {skill.icon}
                       <span className="text-sm">{skill.name}</span>
                     </div>

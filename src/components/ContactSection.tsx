@@ -87,10 +87,10 @@ const ContactSection = () => {
           Get In <span className="text-gradient">Touch</span>
         </h2>
         
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 lg:gap-12">
           <div className="animate-on-scroll" style={{ transitionDelay: "200ms" }}>
-            <div className="glassmorphism p-6 md:p-8 rounded-xl h-full">
-              <h3 className="text-xl md:text-2xl font-medium mb-4 md:mb-6 text-center lg:text-left">Contact Information</h3>
+            <div className="glassmorphism p-4 md:p-6 lg:p-8 rounded-xl h-full">
+              <h3 className="text-lg md:text-xl lg:text-2xl font-medium mb-4 md:mb-6 text-center lg:text-left">Contact Information</h3>
               
               <div className="space-y-4 md:space-y-6 mb-6 md:mb-8">
                 {contactInfo.map((item, index) => (
@@ -157,9 +157,9 @@ const ContactSection = () => {
               action="https://formspree.io/f/mldbyrjz" 
               method="POST"
               onSubmit={handleSubmit} 
-              className="glassmorphism p-6 md:p-8 rounded-xl"
+              className="glassmorphism p-4 md:p-6 lg:p-8 rounded-xl"
             >
-              <h3 className="text-xl md:text-2xl font-medium mb-4 md:mb-6 text-center lg:text-left">Send a Message</h3>
+              <h3 className="text-lg md:text-xl lg:text-2xl font-medium mb-4 md:mb-6 text-center lg:text-left">Send a Message</h3>
               
               <div className="space-y-4">
                 <div>

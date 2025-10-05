@@ -94,14 +94,14 @@ const ResumeSection = () => {
                 {/* Subtle animated border */}
                 <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-primary/20 via-accent/15 to-primary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-700 -z-10 blur-sm" />
                 
-                <div className="relative p-6 md:p-7 bg-gradient-to-br from-transparent via-card/10 to-transparent">
-                  <div className="flex flex-col sm:flex-row gap-5">
-                    <div className="h-18 w-18 sm:h-16 sm:w-16 flex-shrink-0 bg-gradient-to-br from-primary/15 via-secondary/20 to-accent/10 rounded-2xl flex items-center justify-center p-3 mx-auto sm:mx-0 ring-2 ring-primary/15 shadow-xl shadow-primary/10 group-hover:ring-primary/25 group-hover:shadow-primary/20 transition-all duration-500">
+                <div className="relative p-4 md:p-6 lg:p-7 bg-gradient-to-br from-transparent via-card/10 to-transparent">
+                  <div className="flex flex-col sm:flex-row gap-4 md:gap-5">
+                    <div className="h-12 w-12 sm:h-14 sm:w-14 md:h-16 md:w-16 flex-shrink-0 bg-gradient-to-br from-primary/15 via-secondary/20 to-accent/10 rounded-2xl flex items-center justify-center p-2.5 md:p-3 mx-auto sm:mx-0 ring-2 ring-primary/15 shadow-xl shadow-primary/10 group-hover:ring-primary/25 group-hover:shadow-primary/20 transition-all duration-500">
                       <img src={item.logo} alt={item.institution} className="h-full w-full object-cover rounded-xl" />
                     </div>
                     <div className="text-center sm:text-left flex-1">
-                      <h4 className="font-bold text-xl mb-3 text-foreground bg-gradient-to-r from-foreground via-primary/80 to-foreground bg-clip-text group-hover:text-transparent transition-all duration-500">{item.institution}</h4>
-                      <p className="text-muted-foreground/95 mb-4 leading-relaxed font-medium">{item.degree}</p>
+                      <h4 className="font-bold text-lg md:text-xl mb-2 md:mb-3 text-foreground bg-gradient-to-r from-foreground via-primary/80 to-foreground bg-clip-text group-hover:text-transparent transition-all duration-500">{item.institution}</h4>
+                      <p className="text-sm md:text-base text-muted-foreground/95 mb-3 md:mb-4 leading-relaxed font-medium">{item.degree}</p>
                       <div className="flex flex-col sm:flex-row sm:flex-wrap gap-3 sm:gap-5 text-sm">
                         <span className="flex items-center justify-center sm:justify-start gap-2 text-muted-foreground/85 font-medium">
                           <Calendar size={16} className="text-primary/90" />
@@ -140,15 +140,15 @@ const ResumeSection = () => {
                 {/* Subtle animated border covering full container */}
                 <div className="absolute -inset-0.5 rounded-2xl bg-gradient-to-r from-primary/20 via-accent/15 to-primary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-700 blur-sm z-0" />
                 
-                <div className="relative p-6 md:p-7 bg-gradient-to-br from-transparent via-card/10 to-transparent h-full z-20">
-                  <div className="flex flex-col sm:flex-row gap-5 h-full">
-                    <div className="h-18 w-18 sm:h-16 sm:w-16 flex-shrink-0 bg-gradient-to-br from-primary/15 via-secondary/20 to-accent/10 rounded-2xl flex items-center justify-center p-3 mx-auto sm:mx-0 ring-2 ring-primary/15 shadow-xl shadow-primary/10 group-hover:ring-primary/25 group-hover:shadow-primary/20 transition-all duration-500">
+                <div className="relative p-4 md:p-6 lg:p-7 bg-gradient-to-br from-transparent via-card/10 to-transparent h-full z-20">
+                  <div className="flex flex-col sm:flex-row gap-4 md:gap-5 h-full">
+                    <div className="h-12 w-12 sm:h-14 sm:w-14 md:h-16 md:w-16 flex-shrink-0 bg-gradient-to-br from-primary/15 via-secondary/20 to-accent/10 rounded-2xl flex items-center justify-center p-2.5 md:p-3 mx-auto sm:mx-0 ring-2 ring-primary/15 shadow-xl shadow-primary/10 group-hover:ring-primary/25 group-hover:shadow-primary/20 transition-all duration-500">
                       <img src={firstCertification.logo} alt={firstCertification.name} className="h-full w-full object-cover rounded-xl" />
                     </div>
                     <div className="text-center sm:text-left flex-1 flex flex-col justify-between">
                       <div>
-                        <h4 className="font-bold text-xl mb-3 text-foreground bg-gradient-to-r from-foreground via-primary/80 to-foreground bg-clip-text group-hover:text-transparent transition-all duration-500">{firstCertification.name}</h4>
-                        <p className="text-muted-foreground/95 mb-4 leading-relaxed font-medium">{firstCertification.issuer}</p>
+                        <h4 className="font-bold text-lg md:text-xl mb-2 md:mb-3 text-foreground bg-gradient-to-r from-foreground via-primary/80 to-foreground bg-clip-text group-hover:text-transparent transition-all duration-500">{firstCertification.name}</h4>
+                        <p className="text-sm md:text-base text-muted-foreground/95 mb-3 md:mb-4 leading-relaxed font-medium">{firstCertification.issuer}</p>
                         <div className="flex flex-col sm:flex-row sm:flex-wrap gap-3 sm:gap-5 mb-5 text-sm">
                           <span className="flex items-center justify-center sm:justify-start gap-2 text-muted-foreground/85 font-medium">
                             <Calendar size={16} className="text-primary/90" />
@@ -182,15 +182,15 @@ const ResumeSection = () => {
               </Button>
             </div>
 
-            <div className="mt-8 animate-on-scroll" style={{
+            <div className="mt-6 md:mt-8 animate-on-scroll" style={{
               transitionDelay: "1000ms"
             }}>
-              <div className="relative bg-gradient-to-br from-card/80 via-card/60 to-muted/40 backdrop-blur-xl border-2 border-border/40 rounded-2xl p-7 overflow-hidden shadow-2xl shadow-black/15">
+              <div className="relative bg-gradient-to-br from-card/80 via-card/60 to-muted/40 backdrop-blur-xl border-2 border-border/40 rounded-2xl p-4 md:p-6 lg:p-7 overflow-hidden shadow-2xl shadow-black/15">
                 {/* Premium background pattern covering entire container */}
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/8 via-transparent to-accent/5 rounded-2xl" />
                 
                 <div className="relative h-full">
-                  <h4 className="font-bold text-xl mb-4 text-foreground/95">Technical Skills</h4>
+                  <h4 className="font-bold text-lg md:text-xl mb-3 md:mb-4 text-foreground/95">Technical Skills</h4>
                   <ul className="list-disc list-inside space-y-3 text-muted-foreground/90 font-medium">
                     <li>Vibe Coding</li>
                     <li>Internet of Things (IoT)</li>

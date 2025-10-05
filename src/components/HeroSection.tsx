@@ -10,17 +10,17 @@ const HeroSection = () => {
       <div className="container mx-auto px-4 md:px-6 flex flex-col md:flex-row items-center">
         <div className="w-full md:w-1/2 space-y-6 md:pr-10">
           <div className={`transform transition-all duration-1000 delay-100 ${isVisible ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"}`}>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
+            <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold mb-4">
               Hi, I'm <span className="text-gradient">Pratik</span>
             </h1>
           </div>
           
           <div className={`transform transition-all duration-1000 delay-300 ${isVisible ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"}`}>
-            <h2 className="text-2xl md:text-3xl font-medium text-gray-700 mb-6">Electronics &amp; IoT Enthusiast | Building Hardware Projects</h2>
+            <h2 className="text-lg md:text-2xl lg:text-3xl font-medium text-gray-700 mb-4 md:mb-6">Electronics &amp; IoT Enthusiast | Building Hardware Projects</h2>
           </div>
           
           <div className={`transform transition-all duration-1000 delay-500 ${isVisible ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"}`}>
-            <p className="text-lg text-gray-600 mb-8">2nd year B.Tech Electronics &amp; Telecommunication student | Exploring IoT, embedded systems, and solving real-world problems through hands-on tech projects.</p>
+            <p className="text-base md:text-lg text-gray-600 mb-6 md:mb-8">2nd year B.Tech Electronics &amp; Telecommunication student | Exploring IoT, embedded systems, and solving real-world problems through hands-on tech projects.</p>
           </div>
           
           <div className={`flex flex-wrap gap-4 transform transition-all duration-1000 delay-700 ${isVisible ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"}`}>
@@ -44,10 +44,10 @@ const HeroSection = () => {
           </div>
         </div>
         
-        <div className="w-full md:w-1/2 mt-12 md:mt-0">
+        <div className="w-full md:w-1/2 mt-8 md:mt-0">
           <div className={`relative transform transition-all duration-1000 delay-900 ${isVisible ? "translate-x-0 opacity-100" : "translate-x-20 opacity-0"}`}>
             <div className="relative z-10 animate-bounce-light">
-              <img alt="Pratik A. Gangurde" className="w-4/5 max-w-sm mx-auto rounded-full bg-white p-2 shadow-lg aspect-square object-cover" src="/lovable-uploads/6a3d458b-b403-4389-ba2f-ec329232cde8.jpg" />
+              <img alt="Pratik A. Gangurde" className="w-3/5 md:w-4/5 max-w-sm mx-auto rounded-full bg-white p-2 shadow-lg aspect-square object-cover" src="/lovable-uploads/6a3d458b-b403-4389-ba2f-ec329232cde8.jpg" />
             </div>
             <div className="absolute -inset-4 bg-gradient-to-r from-primary/20 to-accent/20 blur-xl rounded-full -z-10"></div>
           </div>
