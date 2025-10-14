@@ -1,8 +1,5 @@
-'use client';
-
 import { useRef, useMemo } from 'react';
-import { Canvas, useFrame, extend } from '@react-three/fiber';
-import { shaderMaterial } from '@react-three/drei';
+import { Canvas, useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
 
 // ===================== SHADER =====================
@@ -148,29 +145,34 @@ const fragmentShader = `
   }
 `;
 
-const CPPNShaderMaterial = shaderMaterial(
-  { iTime: 0, iResolution: new THREE.Vector2(1, 1) },
-  vertexShader,
-  fragmentShader
-);
-
-extend({ CPPNShaderMaterial });
-
 function ShaderPlane() {
   const meshRef = useRef<THREE.Mesh>(null!);
-  const materialRef = useRef<any>(null!);
+  const materialRef = useRef<THREE.ShaderMaterial>(null!);
+
+  const shaderMaterial = useMemo(() => {
+    return new THREE.ShaderMaterial({
+      uniforms: {
+        iTime: { value: 0 },
+        iResolution: { value: new THREE.Vector2(1, 1) }
+      },
+      vertexShader,
+      fragmentShader,
+      side: THREE.DoubleSide
+    });
+  }, []);
 
   useFrame((state) => {
-    if (!materialRef.current) return;
-    materialRef.current.iTime = state.clock.elapsedTime;
-    const { width, height } = state.size;
-    materialRef.current.iResolution.set(width, height);
+    if (shaderMaterial.uniforms) {
+      shaderMaterial.uniforms.iTime.value = state.clock.elapsedTime;
+      const { width, height } = state.size;
+      shaderMaterial.uniforms.iResolution.value.set(width, height);
+    }
   });
 
   return (
     <mesh ref={meshRef} position={[0, -0.75, -0.5]}>
       <planeGeometry args={[4, 4]} />
-      <cPPNShaderMaterial ref={materialRef} side={THREE.DoubleSide} />
+      <primitive object={shaderMaterial} attach="material" />
     </mesh>
   );
 }
@@ -191,10 +193,4 @@ export default function NeuralNetworkBackground() {
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-background/20" />
     </div>
   );
-}
-
-declare module '@react-three/fiber' {
-  interface ThreeElements {
-    cPPNShaderMaterial: any;
-  }
 }
