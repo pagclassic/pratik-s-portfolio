@@ -1,14 +1,12 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Github, Linkedin } from "lucide-react";
-import NeuralNetworkBackground from "@/components/ui/neural-network-background";
 const HeroSection = () => {
   const [isVisible, setIsVisible] = useState(false);
   useEffect(() => {
     setIsVisible(true);
   }, []);
   return <section id="hero" className="min-h-screen flex flex-col justify-center relative overflow-hidden pt-20">
-      <NeuralNetworkBackground />
       <div className="container mx-auto px-4 md:px-6 flex flex-col md:flex-row items-center">
         <div className="w-full md:w-1/2 space-y-6 md:pr-10">
           <div className={`transform transition-all duration-1000 delay-100 ${isVisible ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"}`}>
