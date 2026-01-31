@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { FileText, Download, Calendar, MapPin, Building, ArrowUpRight, Eye } from "lucide-react";
+import { FileText, Calendar, MapPin, Building, ArrowUpRight, Eye } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const ResumeSection = () => {
@@ -66,11 +66,13 @@ const ResumeSection = () => {
           <div className="mt-6 md:mt-0 animate-on-scroll" style={{
             transitionDelay: "400ms"
           }}>
-            <Button className="flex items-center gap-2">
-              <FileText size={18} />
-              <span>Download CV</span>
-              <Download className="ml-1 h-4 w-4" />
-            </Button>
+            <a href="/PratikResume.pdf" target="_blank" rel="noopener noreferrer">
+              <Button className="flex items-center gap-2">
+                <FileText size={18} />
+                <span>View Resume</span>
+                <ArrowUpRight className="ml-1 h-4 w-4" />
+              </Button>
+            </a>
           </div>
         </div>
 
