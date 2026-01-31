@@ -57,7 +57,7 @@ const Navbar = () => {
     { label: 'Home', href: '#home' },
     { label: 'About', href: '#about' },
     { label: 'Projects', href: '#projects' },
-    { label: 'Resume', href: '#resume' },
+    { label: 'Resume', href: '/PratikResume.pdf', isExternal: true },
     { label: 'Contact', href: '#contact' },
   ];
 
@@ -77,13 +77,25 @@ const Navbar = () => {
           <nav className="hidden md:flex items-center space-x-8">
             <div className="flex items-center space-x-8">
               {navItems.map((item) => (
-                <button
-                  key={item.href}
-                  onClick={() => handleNavigation(item.href)}
-                  className="text-sm font-medium hover:text-accent transition-colors"
-                >
-                  {item.label}
-                </button>
+                item.isExternal ? (
+                  <a
+                    key={item.href}
+                    href={item.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-sm font-medium hover:text-accent transition-colors"
+                  >
+                    {item.label}
+                  </a>
+                ) : (
+                  <button
+                    key={item.href}
+                    onClick={() => handleNavigation(item.href)}
+                    className="text-sm font-medium hover:text-accent transition-colors"
+                  >
+                    {item.label}
+                  </button>
+                )
               ))}
             </div>
             <ThemeToggle />
@@ -103,13 +115,26 @@ const Navbar = () => {
           <div className="md:hidden mt-4 py-4 animate-fade-in glassmorphism rounded-lg">
             <nav className="flex flex-col space-y-4 px-4">
               {navItems.map((item) => (
-                <button
-                  key={item.href}
-                  onClick={() => handleNavigation(item.href)}
-                  className="text-base font-medium hover:text-accent transition-colors text-left"
-                >
-                  {item.label}
-                </button>
+                item.isExternal ? (
+                  <a
+                    key={item.href}
+                    href={item.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-base font-medium hover:text-accent transition-colors text-left"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    {item.label}
+                  </a>
+                ) : (
+                  <button
+                    key={item.href}
+                    onClick={() => handleNavigation(item.href)}
+                    className="text-base font-medium hover:text-accent transition-colors text-left"
+                  >
+                    {item.label}
+                  </button>
+                )
               ))}
             </nav>
           </div>
