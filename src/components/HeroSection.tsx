@@ -88,8 +88,8 @@ Best regards,
         </svg>
       </a>
       
-      <div className="absolute top-20 right-10 h-32 w-32 rounded-full bg-primary/10 blur-2xl"></div>
-      <div className="absolute bottom-20 left-10 h-40 w-40 rounded-full bg-accent/10 blur-3xl"></div>
+      <div className="absolute top-20 right-10 h-32 w-32 rounded-full bg-primary/10 blur-2xl pointer-events-none"></div>
+      <div className="absolute bottom-20 left-10 h-40 w-40 rounded-full bg-accent/10 blur-3xl pointer-events-none"></div>
     </section>;
 };
 export default HeroSection;
