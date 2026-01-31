@@ -1,7 +1,34 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Github, Linkedin } from "lucide-react";
+import { ArrowRight, Github, Linkedin, Mail } from "lucide-react";
+
 const HeroSection = () => {
+  const userEmail = "pratikgangurde01@gmail.com";
+  
+  const emailSubject = "Job Opportunity - Interested in Hiring You";
+  const emailBody = `Hi Pratik,
+
+I came across your portfolio and I'm really impressed with your work in Electronics & IoT!
+
+I would like to discuss a potential opportunity with you.
+
+---
+Company Name: [Your Company Name]
+Position: [Job Title/Role]
+Location: [City/Remote]
+---
+
+Brief Description:
+[Please describe the role and what you're looking for]
+
+Looking forward to hearing from you!
+
+Best regards,
+[Your Name]
+[Your Contact Number]`;
+
+  const mailtoLink = `mailto:${userEmail}?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
+
   const [isVisible, setIsVisible] = useState(false);
   useEffect(() => {
     setIsVisible(true);
@@ -24,10 +51,11 @@ const HeroSection = () => {
           </div>
           
           <div className={`flex flex-wrap gap-4 transform transition-all duration-1000 delay-700 ${isVisible ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"}`}>
-            <a href="#contact">
-              <Button>
-                Contact Me
-                <ArrowRight className="ml-2 h-4 w-4" />
+            <a href={mailtoLink}>
+              <Button className="gap-2">
+                <Mail className="h-4 w-4" />
+                Hire Me
+                <ArrowRight className="h-4 w-4" />
               </Button>
             </a>
             <a href="#projects">
