@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, Github, Linkedin, Mail } from "lucide-react";
 
 const HeroSection = () => {
-  const userEmail = "pratikgangurde01@gmail.com";
+  const userEmail = "pratikgangurde35@gmail.com";
   
   const emailSubject = "Job Opportunity - Interested in Hiring You";
   const emailBody = `Hi Pratik,
