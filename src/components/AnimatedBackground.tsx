@@ -46,7 +46,7 @@ const AnimatedBackground = () => {
   }, []);
 
   return (
-    <div className="fixed inset-0 -z-10 overflow-hidden">
+    <div className="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
       {/* Dark gradient overlay */}
       <div className="absolute inset-0 bg-gradient-to-b from-gray-900 to-gray-950"></div>
       
