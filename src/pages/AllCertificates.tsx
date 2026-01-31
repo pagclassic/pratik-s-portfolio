@@ -52,7 +52,32 @@ const AllCertificates = () => {
     logo: "/lovable-uploads/adverk.jpeg",
     description: "Completed a hands-on course in IoT and Embedded Systems, covering microcontrollers, sensors, and communication protocols.",
     status: "Upcoming"
-  }];
+  },  {
+    name: "CSI Bootcamp 2025",
+    issuer: "Computer Society India - ACOE",
+    date: "19th September 2025",
+    type: "course",
+    logo: "/lovable-uploads/csi.png",
+    description: "The bootcamp focused on enhancing coding skills, teamwork, and understanding of emerging technologies",
+    status: "Completed"
+  }, {
+    name: "EduSkills - Embedded System Virtual Internship",
+    issuer: "Eduskills - Microchip ",
+    date: "30th September 2025",
+    type: "internship",
+    logo: "/lovable-uploads/EduSkills.png",
+    description: "The Internship focused on enhancing Thinking and skills.",
+    status: "Completed"
+  }, {
+    name: "Lovable - Vibe Hack 2.0",
+    issuer: "Lovable & Hack with india",
+    date: "21st January 2026",
+    type: "hackathon",
+    logo: "/lovable-uploads/lovable.png",
+    description: "Participated in the Lovable - Vibe Hack 2.0 Hackathon, designing user-centric solutions under time constraints.",
+    status: "Completed"
+  }
+                            ];
   const getTypeIcon = (type: string) => {
     switch (type) {
       case "hackathon":
