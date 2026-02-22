@@ -6,6 +6,13 @@ import { Textarea } from "@/components/ui/textarea";
 import { toast } from "@/hooks/use-toast";
 import { Mail, Phone, MapPin, Send, Github, Eye, Linkedin } from "lucide-react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { z } from "zod";
+
+const contactSchema = z.object({
+  name: z.string().trim().min(1, "Name is required").max(100, "Name must be less than 100 characters"),
+  email: z.string().trim().email("Invalid email address").max(255, "Email must be less than 255 characters"),
+  message: z.string().trim().min(1, "Message is required").max(2000, "Message must be less than 2000 characters"),
+});
 
 const ContactSection = () => {
   const [formData, setFormData] = useState({
@@ -45,18 +52,54 @@ const ContactSection = () => {
     }));
   };
 
+  const [formErrors, setFormErrors] = useState<Record<string, string>>({});
+
   const handleSubmit = (e: React.FormEvent) => {
-    setIsSubmitting(true);
-    
-    // Show immediate feedback
-    setTimeout(() => {
-      toast({
-        title: "Message sent!",
-        description: "Thank you for reaching out. I'll get back to you soon.",
+    e.preventDefault();
+    setFormErrors({});
+
+    const result = contactSchema.safeParse(formData);
+    if (!result.success) {
+      const errors: Record<string, string> = {};
+      result.error.errors.forEach((err) => {
+        if (err.path[0]) errors[err.path[0] as string] = err.message;
       });
-      setFormData({ name: "", email: "", message: "" });
-      setIsSubmitting(false);
-    }, 1000);
+      setFormErrors(errors);
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    // Submit to Formspree with validated data
+    const form = e.target as HTMLFormElement;
+    fetch(form.action, {
+      method: "POST",
+      body: JSON.stringify(result.data),
+      headers: { "Content-Type": "application/json", Accept: "application/json" },
+    })
+      .then((res) => {
+        if (res.ok) {
+          toast({
+            title: "Message sent!",
+            description: "Thank you for reaching out. I'll get back to you soon.",
+          });
+          setFormData({ name: "", email: "", message: "" });
+        } else {
+          toast({
+            title: "Error",
+            description: "Failed to send message. Please try again.",
+            variant: "destructive",
+          });
+        }
+      })
+      .catch(() => {
+        toast({
+          title: "Error",
+          description: "Failed to send message. Please try again.",
+          variant: "destructive",
+        });
+      })
+      .finally(() => setIsSubmitting(false));
   };
 
   const contactInfo = [
@@ -172,9 +215,11 @@ const ContactSection = () => {
                     value={formData.name}
                     onChange={handleChange}
                     placeholder="Your name"
+                    maxLength={100}
                     required
                     className="bg-secondary"
                   />
+                  {formErrors.name && <p className="text-destructive text-xs mt-1">{formErrors.name}</p>}
                 </div>
                 
                 <div>
@@ -188,9 +233,11 @@ const ContactSection = () => {
                     value={formData.email}
                     onChange={handleChange}
                     placeholder="your.email@example.com"
+                    maxLength={255}
                     required
                     className="bg-secondary"
                   />
+                  {formErrors.email && <p className="text-destructive text-xs mt-1">{formErrors.email}</p>}
                 </div>
                 
                 <div>
@@ -204,9 +251,11 @@ const ContactSection = () => {
                     onChange={handleChange}
                     placeholder="How can I help you?"
                     rows={4}
+                    maxLength={2000}
                     required
                     className="bg-secondary"
                   />
+                  {formErrors.message && <p className="text-destructive text-xs mt-1">{formErrors.message}</p>}
                 </div>
                 
                 <Button 
