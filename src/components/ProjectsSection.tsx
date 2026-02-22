@@ -5,9 +5,13 @@ import { Card } from "@/components/ui/card";
 import { Eye } from "lucide-react";
 import { Link } from "react-router-dom";
 import { getFeaturedProjects } from "@/data/projects";
+import { getFeaturedVibeProjects } from "@/data/vibeProjects";
+import { useMode } from "@/contexts/ModeContext";
+import { motion, AnimatePresence } from "framer-motion";
 
 const ProjectsSection = () => {
-  const featuredProjects = getFeaturedProjects(3);
+  const { mode } = useMode();
+  const featuredProjects = mode === "vibecoder" ? getFeaturedVibeProjects(3) : getFeaturedProjects(3);
 
   useEffect(() => {
     const observer = new IntersectionObserver(entries => {
@@ -16,9 +20,7 @@ const ProjectsSection = () => {
           entry.target.classList.add("is-visible");
         }
       });
-    }, {
-      threshold: 0.1
-    });
+    }, { threshold: 0.1 });
     document.querySelectorAll(".animate-on-scroll").forEach(el => {
       observer.observe(el);
     });
@@ -44,38 +46,54 @@ const ProjectsSection = () => {
           </Button>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-          {featuredProjects.map((project, index) => (
-            <Card key={project.id} className="overflow-hidden border-none shadow-lg dark-card animate-on-scroll hover:shadow-xl transition-shadow duration-300" style={{
-              transitionDelay: `${index * 200}ms`
-            }}>
-              <div className="h-48 overflow-hidden relative">
-                <img 
-                  src={project.image}
-                  alt={project.title} 
-                  className="w-full h-full object-cover object-center hover:scale-105 transition-transform duration-300" 
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                <div className="absolute bottom-4 left-4 text-white">
-                  <div className="text-xs uppercase tracking-wide mb-1">{project.category}</div>
-                </div>
-              </div>
-              
-              <div className="p-6">
-                <h3 className="text-xl font-bold mb-4 line-clamp-2">{project.title}</h3>
-                
-                <div className="mt-4">
-                  <Link to={`/projects/${project.id}`} className="w-full block">
-                    <Button className="w-full gap-2">
-                      <Eye size={18} />
-                      View Details
-                    </Button>
-                  </Link>
-                </div>
-              </div>
-            </Card>
-          ))}
-        </div>
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={mode + "-projects"}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.4 }}
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto"
+          >
+            {featuredProjects.map((project, index) => (
+              <motion.div
+                key={project.id}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.15 }}
+              >
+                <Card className={`overflow-hidden border-none shadow-lg dark-card hover:shadow-xl transition-all duration-300 ${
+                  mode === "vibecoder" ? "hover:scale-[1.03] hover:shadow-purple-500/20" : ""
+                }`}>
+                  <div className="h-48 overflow-hidden relative">
+                    <img 
+                      src={project.image}
+                      alt={project.title} 
+                      className="w-full h-full object-cover object-center hover:scale-105 transition-transform duration-300" 
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                    <div className="absolute bottom-4 left-4 text-white">
+                      <div className="text-xs uppercase tracking-wide mb-1">{project.category}</div>
+                    </div>
+                  </div>
+                  
+                  <div className="p-6">
+                    <h3 className="text-xl font-bold mb-4 line-clamp-2">{project.title}</h3>
+                    
+                    <div className="mt-4">
+                      <Link to={`/projects/${project.id}`} className="w-full block">
+                        <Button className="w-full gap-2">
+                          <Eye size={18} />
+                          View Details
+                        </Button>
+                      </Link>
+                    </div>
+                  </div>
+                </Card>
+              </motion.div>
+            ))}
+          </motion.div>
+        </AnimatePresence>
       </div>
     </section>
   );

@@ -46,6 +46,26 @@
     --sidebar-border: 220 13% 25%;
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
+
+  .vibecoder-theme {
+    --background: 270 15% 4%;
+    --foreground: 0 0% 98%;
+    --card: 270 15% 8%;
+    --card-foreground: 0 0% 98%;
+    --popover: 270 15% 8%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 270 80% 65%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 270 10% 16%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 270 5% 15%;
+    --muted-foreground: 270 5% 65%;
+    --accent: 185 80% 50%;
+    --accent-foreground: 0 0% 100%;
+    --border: 270 10% 26%;
+    --input: 270 10% 26%;
+    --ring: 270 50% 65%;
+  }
 }
 
 @layer base {
