@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowLeft, Github, Zap, Camera, Wifi, Wrench, Target, Lightbulb, User, TrendingUp, Image } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import { getProjectById } from "@/data/projects";
+import { getVibeProjectById } from "@/data/vibeProjects";
 
 const ProjectDetail = () => {
   const { id } = useParams();
@@ -37,7 +38,7 @@ const ProjectDetail = () => {
     };
   }, [id]);
 
-  const project = getProjectById(Number(id));
+  const project = getProjectById(Number(id)) || getVibeProjectById(Number(id));
 
   if (!project) {
     return (

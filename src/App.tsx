@@ -10,26 +10,28 @@ import AllProjects from "./pages/AllProjects";
 import AllCertificates from "./pages/AllCertificates";
 import ProjectDetail from "./pages/ProjectDetail";
 import NotFound from "./pages/NotFound";
+import { ModeProvider } from "./contexts/ModeContext";
 
 const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <ScrollToTopOnNavigate />
-        <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/projects" element={<AllProjects />} />
-          <Route path="/certificates" element={<AllCertificates />} />
-          <Route path="/projects/:id" element={<ProjectDetail />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
-    </TooltipProvider>
+    <ModeProvider>
+      <TooltipProvider>
+        <Toaster />
+        <Sonner />
+        <BrowserRouter>
+          <ScrollToTopOnNavigate />
+          <Routes>
+            <Route path="/" element={<Index />} />
+            <Route path="/projects" element={<AllProjects />} />
+            <Route path="/certificates" element={<AllCertificates />} />
+            <Route path="/projects/:id" element={<ProjectDetail />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </BrowserRouter>
+      </TooltipProvider>
+    </ModeProvider>
   </QueryClientProvider>
 );
 

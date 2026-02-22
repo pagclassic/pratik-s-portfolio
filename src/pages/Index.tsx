@@ -10,6 +10,7 @@ import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 import ScrollToTop from "@/components/ScrollToTop";
 import AnimatedBackground from "@/components/AnimatedBackground";
+import ModeToggle from "@/components/ModeToggle";
 
 const Index = () => {
   useEffect(() => {
@@ -89,6 +90,7 @@ const Index = () => {
     <div className="min-h-screen bg-background">
       <AnimatedBackground />
       <Navbar />
+      <ModeToggle />
       
       <main>
         <HeroSection />

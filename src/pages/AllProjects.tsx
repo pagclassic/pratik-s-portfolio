@@ -6,8 +6,12 @@ import { Eye, Code, ArrowLeft } from "lucide-react";
 import { Link } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import { projects } from "@/data/projects";
+import { vibeProjects } from "@/data/vibeProjects";
+import { useMode } from "@/contexts/ModeContext";
 
 const AllProjects = () => {
+  const { mode } = useMode();
+  const displayProjects = mode === "vibecoder" ? vibeProjects : projects;
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -50,7 +54,7 @@ const AllProjects = () => {
         </h1>
         
         <div className="max-w-6xl mx-auto space-y-8">
-          {projects.map((project) => (
+          {displayProjects.map((project) => (
             <Card key={project.id} className="overflow-hidden border-none shadow-lg dark-card animate-on-scroll">
               <div className="flex flex-col lg:flex-row min-h-[28rem]">
                 <div className="lg:w-1/2 h-64 lg:h-auto overflow-hidden">

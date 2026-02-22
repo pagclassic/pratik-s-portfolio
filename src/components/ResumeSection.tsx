@@ -2,8 +2,10 @@ import { useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { FileText, Calendar, MapPin, Building, ArrowUpRight, Eye } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useMode } from "@/contexts/ModeContext";
 
 const ResumeSection = () => {
+  const { mode } = useMode();
   useEffect(() => {
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
@@ -194,12 +196,25 @@ const ResumeSection = () => {
                 <div className="relative h-full">
                   <h4 className="font-bold text-lg md:text-xl mb-3 md:mb-4 text-foreground/95">Technical Skills</h4>
                   <ul className="list-disc list-inside space-y-3 text-muted-foreground/90 font-medium">
-                    <li>Vibe Coding</li>
-                    <li>Internet of Things (IoT)</li>
-                    <li>Printed Circuit Board (PCB) Design</li>
-                    <li>Arduino IDE</li>
-                    <li>KiCAD</li>
-                    <li>C++</li>
+                    {mode === "vibecoder" ? (
+                      <>
+                        <li>Vibe Coding with AI Tools</li>
+                        <li>React & TypeScript</li>
+                        <li>Tailwind CSS & Framer Motion</li>
+                        <li>Lovable (AI Development)</li>
+                        <li>Responsive Web Design</li>
+                        <li>Git & Deployment</li>
+                      </>
+                    ) : (
+                      <>
+                        <li>Vibe Coding</li>
+                        <li>Internet of Things (IoT)</li>
+                        <li>Printed Circuit Board (PCB) Design</li>
+                        <li>Arduino IDE</li>
+                        <li>KiCAD</li>
+                        <li>C++</li>
+                      </>
+                    )}
                   </ul>
                 </div>
               </div>
