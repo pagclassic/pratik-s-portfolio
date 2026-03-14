@@ -2,7 +2,7 @@
 import { useEffect } from "react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Eye, Code, ArrowLeft } from "lucide-react";
+import { Eye, Code, ArrowLeft, ExternalLink } from "lucide-react";
 import { Link } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import { projects } from "@/data/projects";
