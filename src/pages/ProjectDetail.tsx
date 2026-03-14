@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, Github, Zap, Camera, Wifi, Wrench, Target, Lightbulb, User, TrendingUp, Image } from "lucide-react";
+import { ArrowLeft, Github, Wrench, Target, Lightbulb, User, TrendingUp, Image, ExternalLink } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import { getProjectById } from "@/data/projects";
 import { getVibeProjectById } from "@/data/vibeProjects";
