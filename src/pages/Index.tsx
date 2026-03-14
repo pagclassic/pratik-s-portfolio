@@ -11,78 +11,59 @@ import Footer from "@/components/Footer";
 import ScrollToTop from "@/components/ScrollToTop";
 import AnimatedBackground from "@/components/AnimatedBackground";
 import ModeToggle from "@/components/ModeToggle";
+import { useMode } from "@/contexts/ModeContext";
 
 const Index = () => {
+  const { mode } = useMode();
+
   useEffect(() => {
-    // Initialize smooth scrolling
     const handleAnchorClick = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
       const href = target.getAttribute('href');
-      
       if (href && href.startsWith('#')) {
         e.preventDefault();
         const targetId = href.substring(1);
         const targetElement = document.getElementById(targetId);
-        
         if (targetElement) {
-          window.scrollTo({
-            top: targetElement.offsetTop - 80,
-            behavior: 'smooth'
-          });
+          window.scrollTo({ top: targetElement.offsetTop - 80, behavior: 'smooth' });
         }
       }
     };
 
-    // Add event listeners to all anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', handleAnchorClick as EventListener);
     });
 
-    // Scroll to section if hash is present (when coming from subpages)
     const scrollToHash = () => {
       if (window.location.hash) {
         const targetId = window.location.hash.substring(1);
         const targetElement = document.getElementById(targetId);
         if (targetElement) {
-          window.scrollTo({
-            top: targetElement.offsetTop - 80,
-            behavior: 'smooth'
-          });
+          window.scrollTo({ top: targetElement.offsetTop - 80, behavior: 'smooth' });
         }
       }
     };
 
-    // Run on mount and on hash changes
     requestAnimationFrame(scrollToHash);
     window.addEventListener('hashchange', scrollToHash);
 
-    // Initialize scroll animation observer
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("is-visible");
-          }
+          if (entry.isIntersecting) entry.target.classList.add("is-visible");
         });
       },
       { threshold: 0.1 }
     );
 
-    // Observe all elements with animate-on-scroll class
-    document.querySelectorAll(".animate-on-scroll").forEach((el) => {
-      observer.observe(el);
-    });
+    document.querySelectorAll(".animate-on-scroll").forEach((el) => observer.observe(el));
 
     return () => {
       document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.removeEventListener('click', handleAnchorClick as EventListener);
       });
-
       window.removeEventListener('hashchange', scrollToHash);
-      
-      document.querySelectorAll(".animate-on-scroll").forEach((el) => {
-        observer.unobserve(el);
-      });
+      document.querySelectorAll(".animate-on-scroll").forEach((el) => observer.unobserve(el));
     };
   }, []);
 
@@ -95,9 +76,9 @@ const Index = () => {
       <main>
         <HeroSection />
         <AboutSection />
-        <EducationSection />
+        {mode !== "vibecoder" && <EducationSection />}
         <ProjectsSection />
-        <ResumeSection />
+        {mode !== "vibecoder" && <ResumeSection />}
         <ContactSection />
       </main>
       
