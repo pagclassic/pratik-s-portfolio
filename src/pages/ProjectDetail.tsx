@@ -38,7 +38,9 @@ const ProjectDetail = () => {
     };
   }, [id]);
 
-  const project = getProjectById(Number(id)) || getVibeProjectById(Number(id));
+  const vibeProject = getVibeProjectById(Number(id));
+  const project = vibeProject || getProjectById(Number(id));
+  const isVibeProject = !!vibeProject;
 
   if (!project) {
     return (
