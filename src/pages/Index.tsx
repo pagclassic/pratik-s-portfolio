@@ -1,4 +1,5 @@
 
+
 import { useEffect } from "react";
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
@@ -11,6 +12,7 @@ import Footer from "@/components/Footer";
 import ScrollToTop from "@/components/ScrollToTop";
 import AnimatedBackground from "@/components/AnimatedBackground";
 import ModeToggle from "@/components/ModeToggle";
+import { useMode } from "@/contexts/ModeContext";
 
 const Index = () => {
   useEffect(() => {
