@@ -2,7 +2,7 @@
 import { useEffect } from "react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Eye, Code, ArrowLeft } from "lucide-react";
+import { Eye, Code, ArrowLeft, ExternalLink } from "lucide-react";
 import { Link } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import { projects } from "@/data/projects";
@@ -90,21 +90,43 @@ const AllProjects = () => {
                     </div>
                   </div>
                   
-                  <div className="flex items-center gap-4 mt-6">
-                    <Button 
-                      variant="outline" 
-                      className="gap-2 border-gray-700 hover:bg-gray-800" 
-                      onClick={() => window.open(project.codeUrl, "_blank")}
-                    >
-                      <Code size={18} />
-                      View Code
-                    </Button>
-                    <Link to={`/projects/${project.id}`}>
-                      <Button className="gap-2">
-                        <Eye size={18} />
-                        Full Details
-                      </Button>
-                    </Link>
+                  <div className="flex items-center gap-4 mt-6 flex-wrap">
+                    {mode === "vibecoder" ? (
+                      <>
+                        {project.demoUrl && project.demoUrl !== "#" && (
+                          <Button
+                            className="gap-2 bg-gradient-to-r from-purple-600 to-violet-700 hover:from-purple-500 hover:to-violet-600 border-0 shadow-lg shadow-purple-900/40 text-white"
+                            onClick={() => window.open(project.demoUrl, "_blank")}
+                          >
+                            <ExternalLink size={18} />
+                            Try It Live
+                          </Button>
+                        )}
+                        <Link to={`/projects/${project.id}`}>
+                          <Button variant="outline" className="gap-2 border-purple-500/30 hover:bg-purple-500/10 text-purple-300">
+                            <Eye size={18} />
+                            Full Details
+                          </Button>
+                        </Link>
+                      </>
+                    ) : (
+                      <>
+                        <Button
+                          variant="outline"
+                          className="gap-2 border-gray-700 hover:bg-gray-800"
+                          onClick={() => window.open(project.codeUrl, "_blank")}
+                        >
+                          <Code size={18} />
+                          View Code
+                        </Button>
+                        <Link to={`/projects/${project.id}`}>
+                          <Button className="gap-2">
+                            <Eye size={18} />
+                            Full Details
+                          </Button>
+                        </Link>
+                      </>
+                    )}
                   </div>
                 </div>
               </div>

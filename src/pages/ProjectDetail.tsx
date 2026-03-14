@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, Github, Zap, Camera, Wifi, Wrench, Target, Lightbulb, User, TrendingUp, Image } from "lucide-react";
+import { ArrowLeft, Github, Wrench, Target, Lightbulb, User, TrendingUp, Image, ExternalLink } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import { getProjectById } from "@/data/projects";
 import { getVibeProjectById } from "@/data/vibeProjects";
@@ -38,7 +38,9 @@ const ProjectDetail = () => {
     };
   }, [id]);
 
-  const project = getProjectById(Number(id)) || getVibeProjectById(Number(id));
+  const vibeProject = getVibeProjectById(Number(id));
+  const project = vibeProject || getProjectById(Number(id));
+  const isVibeProject = !!vibeProject;
 
   if (!project) {
     return (
@@ -180,39 +182,61 @@ const ProjectDetail = () => {
             </ul>
           </Card>
 
-          {/* GitHub */}
-          <Card className="p-6 md:p-8 border-none shadow-lg dark-card animate-on-scroll">
-            <div className="flex items-center gap-3 mb-4">
-              <Github className="w-6 h-6 text-accent" />
-              <h2 className="text-2xl font-bold">GitHub Repository</h2>
-            </div>
-            <div className="flex items-center gap-4">
-              <Button 
-                className="gap-2" 
-                onClick={() => window.open("https://github.com/username/dipex-smart-highway", "_blank")}
-              >
-                <Github size={18} />
-                View Project on GitHub
-              </Button>
-            </div>
-          </Card>
-
-          {/* Project Gallery */}
-          <Card className="p-6 md:p-8 border-none shadow-lg dark-card animate-on-scroll">
-            <div className="flex items-center gap-3 mb-4">
-              <Image className="w-6 h-6 text-accent" />
-              <h2 className="text-2xl font-bold">Project Gallery</h2>
-            </div>
-            <div className="flex items-center gap-4">
+          {/* Live Demo / Try it — vibe projects only */}
+          {isVibeProject && project.demoUrl && project.demoUrl !== "#" && (
+            <Card className="p-6 md:p-8 border-none shadow-lg dark-card animate-on-scroll border border-purple-500/20 bg-purple-500/5">
+              <div className="flex items-center gap-3 mb-4">
+                <ExternalLink className="w-6 h-6 text-purple-400" />
+                <h2 className="text-2xl font-bold">Try It Live</h2>
+              </div>
+              <p className="text-muted-foreground mb-5">This project is live and deployed — check it out!</p>
               <Button
-                className="gap-2"
-                onClick={() => window.open("", "_blank")}
+                className="gap-2 bg-gradient-to-r from-purple-600 to-violet-700 hover:from-purple-500 hover:to-violet-600 border-0 shadow-lg shadow-purple-900/40 text-white"
+                onClick={() => window.open(project.demoUrl, "_blank")}
               >
-                <Image size={18} />
-                View Project Gallery
+                <ExternalLink size={18} />
+                Open Live App
               </Button>
-            </div>
-          </Card>
+            </Card>
+          )}
+
+          {/* GitHub — dev projects only */}
+          {!isVibeProject && (
+            <Card className="p-6 md:p-8 border-none shadow-lg dark-card animate-on-scroll">
+              <div className="flex items-center gap-3 mb-4">
+                <Github className="w-6 h-6 text-accent" />
+                <h2 className="text-2xl font-bold">GitHub Repository</h2>
+              </div>
+              <div className="flex items-center gap-4">
+                <Button
+                  className="gap-2"
+                  onClick={() => window.open("https://github.com/username/dipex-smart-highway", "_blank")}
+                >
+                  <Github size={18} />
+                  View Project on GitHub
+                </Button>
+              </div>
+            </Card>
+          )}
+
+          {/* Project Gallery — dev projects only */}
+          {!isVibeProject && (
+            <Card className="p-6 md:p-8 border-none shadow-lg dark-card animate-on-scroll">
+              <div className="flex items-center gap-3 mb-4">
+                <Image className="w-6 h-6 text-accent" />
+                <h2 className="text-2xl font-bold">Project Gallery</h2>
+              </div>
+              <div className="flex items-center gap-4">
+                <Button
+                  className="gap-2"
+                  onClick={() => window.open("", "_blank")}
+                >
+                  <Image size={18} />
+                  View Project Gallery
+                </Button>
+              </div>
+            </Card>
+          )}
         </div>
       </div>
     </div>
