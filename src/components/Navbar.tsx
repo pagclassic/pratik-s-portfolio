@@ -46,7 +46,7 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const devNavItems = [
+  const devNavItems: { label: string; href: string; isExternal?: boolean }[] = [
     { label: 'Home', href: '#home' },
     { label: 'About', href: '#about' },
     { label: 'Projects', href: '#projects' },
@@ -54,7 +54,7 @@ const Navbar = () => {
     { label: 'Contact', href: '#contact' },
   ];
 
-  const vibeNavItems = [
+  const vibeNavItems: { label: string; href: string; isExternal?: boolean }[] = [
     { label: 'Home', href: '#home' },
     { label: 'About', href: '#about' },
     { label: 'Projects', href: '#projects' },
