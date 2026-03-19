@@ -14,7 +14,8 @@ const aiArsenal = [
     tagline: "Build full apps by chatting",
     gradient: "from-purple-500/20 to-violet-600/10",
     border: "border-purple-500/30",
-    glow: "group-hover:shadow-purple-500/20",
+    hoverBorder: "hover:border-purple-400/60",
+    glow: "hover:shadow-purple-500/20",
   },
   {
     name: "ChatGPT",
@@ -22,7 +23,8 @@ const aiArsenal = [
     tagline: "Think, plan & debug with AI",
     gradient: "from-green-500/20 to-emerald-600/10",
     border: "border-green-500/30",
-    glow: "group-hover:shadow-green-500/20",
+    hoverBorder: "hover:border-green-400/60",
+    glow: "hover:shadow-green-500/20",
   },
   {
     name: "Cursor",
@@ -30,7 +32,8 @@ const aiArsenal = [
     tagline: "AI-first code editor",
     gradient: "from-blue-500/20 to-cyan-600/10",
     border: "border-blue-500/30",
-    glow: "group-hover:shadow-blue-500/20",
+    hoverBorder: "hover:border-blue-400/60",
+    glow: "hover:shadow-blue-500/20",
   },
   {
     name: "Framer",
@@ -38,7 +41,8 @@ const aiArsenal = [
     tagline: "Design & prototype fast",
     gradient: "from-pink-500/20 to-rose-600/10",
     border: "border-pink-500/30",
-    glow: "group-hover:shadow-pink-500/20",
+    hoverBorder: "hover:border-pink-400/60",
+    glow: "hover:shadow-pink-500/20",
   },
   {
     name: "Vercel",
@@ -46,7 +50,8 @@ const aiArsenal = [
     tagline: "Deploy in seconds",
     gradient: "from-slate-400/20 to-slate-600/10",
     border: "border-slate-400/30",
-    glow: "group-hover:shadow-slate-400/20",
+    hoverBorder: "hover:border-slate-300/60",
+    glow: "hover:shadow-slate-400/20",
   },
   {
     name: "GitHub",
@@ -54,7 +59,8 @@ const aiArsenal = [
     tagline: "Version control everything",
     gradient: "from-orange-500/20 to-amber-600/10",
     border: "border-orange-500/30",
-    glow: "group-hover:shadow-orange-500/20",
+    hoverBorder: "hover:border-orange-400/60",
+    glow: "hover:shadow-orange-500/20",
   },
 ];
 
@@ -105,7 +111,7 @@ const AboutSection = () => {
             <h2 className="text-3xl md:text-4xl font-bold mb-6 animate-on-scroll">
               About <span className="text-gradient">Me</span>
             </h2>
-            
+
             <AnimatePresence mode="wait">
               <motion.div
                 key={mode + "-about"}
@@ -120,65 +126,62 @@ const AboutSection = () => {
               </motion.div>
             </AnimatePresence>
           </div>
-          
+
           <div className="w-full md:w-1/2 animate-on-scroll h-full" style={{ transitionDelay: "600ms" }}>
             <AnimatePresence mode="wait">
               {mode === "vibecoder" ? (
                 <motion.div
-                  key="vibe-skills"
+                  key="vibe-arsenal"
                   initial={{ opacity: 0, scale: 0.95 }}
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.95 }}
                   transition={{ duration: 0.4 }}
-                  className="space-y-6 my-4 md:my-[45px]"
+                  className="my-4 md:my-[45px]"
                 >
-                  {/* Stats badges */}
-                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-                    {vibeBadges.map((badge, i) => (
+                  {/* Header */}
+                  <div className="mb-4 flex items-center gap-2">
+                    <span className="text-lg">🛠️</span>
+                    <h3 className="text-sm font-semibold text-purple-300 uppercase tracking-widest">
+                      My AI Arsenal
+                    </h3>
+                    <div className="flex-1 h-px bg-gradient-to-r from-purple-500/40 to-transparent" />
+                  </div>
+
+                  {/* Bento grid of tools */}
+                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                    {aiArsenal.map((tool, i) => (
                       <motion.div
-                        key={badge.label}
-                        initial={{ opacity: 0, y: 15 }}
+                        key={tool.name}
+                        initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: i * 0.1 }}
-                        className="relative overflow-hidden rounded-xl border border-purple-500/30 bg-purple-500/5 p-3 text-center group hover:border-purple-400/60 transition-all duration-300"
+                        transition={{ delay: 0.1 + i * 0.07, duration: 0.4 }}
+                        className={`
+                          relative group rounded-2xl border ${tool.border} ${tool.hoverBorder}
+                          bg-gradient-to-br ${tool.gradient} backdrop-blur-sm
+                          p-4 cursor-default transition-all duration-300
+                          hover:shadow-lg ${tool.glow} hover:-translate-y-0.5
+                        `}
                       >
-                        <div className="absolute inset-0 bg-gradient-to-br from-purple-500/10 via-transparent to-cyan-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                        <div className="text-xl mb-1">{badge.emoji}</div>
-                        <div className="text-lg font-bold text-purple-300">{badge.value}</div>
-                        <div className="text-xs text-muted-foreground">{badge.label}</div>
+                        {/* Subtle shine on hover */}
+                        <div className="absolute inset-0 rounded-2xl bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                        <div className="relative">
+                          <div className="text-2xl mb-2">{tool.emoji}</div>
+                          <div className="font-semibold text-sm text-foreground mb-0.5">{tool.name}</div>
+                          <div className="text-xs text-muted-foreground leading-snug">{tool.tagline}</div>
+                        </div>
                       </motion.div>
                     ))}
                   </div>
 
-                  {/* Tech stack bars */}
-                  <div className="rounded-2xl border border-purple-500/20 bg-card/50 backdrop-blur-sm p-5 space-y-4">
-                    <h3 className="text-sm font-semibold text-purple-300 uppercase tracking-widest mb-4">Tech Stack & Skills</h3>
-                    {vibeStack.map((tech, i) => (
-                      <motion.div
-                        key={tech.name}
-                        initial={{ opacity: 0, x: -20 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ delay: 0.2 + i * 0.08 }}
-                        className="space-y-1.5"
-                      >
-                        <div className="flex items-center justify-between text-sm">
-                          <span className="flex items-center gap-2 font-medium">
-                            <span>{tech.icon}</span>
-                            <span>{tech.name}</span>
-                          </span>
-                          <span className="text-xs text-muted-foreground">{tech.level}%</span>
-                        </div>
-                        <div className="h-2 rounded-full bg-muted/60 overflow-hidden">
-                          <motion.div
-                            initial={{ width: 0 }}
-                            animate={{ width: `${tech.level}%` }}
-                            transition={{ duration: 1, delay: 0.4 + i * 0.1, ease: "easeOut" }}
-                            className={`h-full rounded-full bg-gradient-to-r ${tech.color} shadow-sm`}
-                          />
-                        </div>
-                      </motion.div>
-                    ))}
-                  </div>
+                  {/* Bottom tagline */}
+                  <motion.p
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 0.8 }}
+                    className="mt-4 text-xs text-center text-muted-foreground/60 italic"
+                  >
+                    "The best tool is the one that gets out of your way ✨"
+                  </motion.p>
                 </motion.div>
               ) : (
                 <motion.div
@@ -204,7 +207,7 @@ const AboutSection = () => {
                         </motion.div>
                       ))}
                     </div>
-                    
+
                     <div className="relative">
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4 blur-sm">
                         {devPotentialSkills.map((skill, index) => (
@@ -214,13 +217,13 @@ const AboutSection = () => {
                           </div>
                         ))}
                       </div>
-                      
+
                       <div className="absolute inset-0 flex items-center justify-center bg-black/20 backdrop-blur-[1px] rounded-lg">
                         <div className="text-center p-2">
-                          <div className="text-sm font-semibold text-white mb-1">
+                          <div className="text-sm font-semibold text-foreground mb-1">
                             🚧 Potential Skills
                           </div>
-                          <div className="text-xs text-gray-300">
+                          <div className="text-xs text-muted-foreground">
                             Currently working on mastering
                           </div>
                         </div>
