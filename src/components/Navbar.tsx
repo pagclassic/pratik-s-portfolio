@@ -5,12 +5,14 @@ import { Button } from "@/components/ui/button";
 import { Link, useLocation } from "react-router-dom";
 import ThemeToggle from "./ThemeToggle";
 import LogoAnimation from "./LogoAnimation";
+import { useMode } from "@/contexts/ModeContext";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
   const isHomePage = location.pathname === '/';
+  const { mode } = useMode();
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -18,13 +20,11 @@ const Navbar = () => {
 
   const handleNavigation = (href: string) => {
     if (isHomePage) {
-      // On homepage, scroll to section
       const element = document.querySelector(href);
       if (element) {
         element.scrollIntoView({ behavior: 'smooth' });
       }
     } else {
-      // On other pages, navigate to homepage with section
       window.location.href = `/${href}`;
     }
     setIsOpen(false);
@@ -40,26 +40,28 @@ const Navbar = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 10) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
+      setIsScrolled(window.scrollY > 10);
     };
-
     window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const navItems = [
+  const devNavItems: { label: string; href: string; isExternal?: boolean }[] = [
     { label: 'Home', href: '#home' },
     { label: 'About', href: '#about' },
     { label: 'Projects', href: '#projects' },
     { label: 'Resume', href: '/PratikResume.pdf', isExternal: true },
     { label: 'Contact', href: '#contact' },
   ];
+
+  const vibeNavItems: { label: string; href: string; isExternal?: boolean }[] = [
+    { label: 'Home', href: '#home' },
+    { label: 'About', href: '#about' },
+    { label: 'Projects', href: '#projects' },
+    { label: 'Contact', href: '#contact' },
+  ];
+
+  const navItems = mode === 'vibecoder' ? vibeNavItems : devNavItems;
 
   return (
     <header
