@@ -2,26 +2,60 @@
 // About section component with skills display
 import { useEffect } from "react";
 import { Card } from "@/components/ui/card";
-import { Cpu, Zap, Wifi, Cog, Wrench, Lightbulb, Code2, Palette, Sparkles, Bot } from "lucide-react";
+import { Cpu, Zap, Wifi, Cog, Wrench, Lightbulb } from "lucide-react";
 import { useMode } from "@/contexts/ModeContext";
 import { motion, AnimatePresence } from "framer-motion";
 
-// Vibe Coder tech stack with proficiency levels
-const vibeStack = [
-  { name: "React & TypeScript", level: 85, color: "from-cyan-400 to-blue-500", icon: "⚛️" },
-  { name: "Tailwind CSS", level: 90, color: "from-teal-400 to-cyan-500", icon: "🎨" },
-  { name: "Lovable (AI Dev)", level: 95, color: "from-purple-400 to-violet-600", icon: "✨" },
-  { name: "Framer Motion", level: 80, color: "from-pink-400 to-purple-500", icon: "🌊" },
-  { name: "Vibe Coding", level: 99, color: "from-yellow-400 to-orange-500", icon: "🔥" },
-  { name: "AI Prompting", level: 92, color: "from-green-400 to-emerald-500", icon: "🤖" },
-];
-
-// Vibe coder badges
-const vibeBadges = [
-  { label: "Apps Shipped", value: "1+", emoji: "🚀" },
-  { label: "AI Tools Used", value: "5+", emoji: "🛠️" },
-  { label: "Hours Vibe Coded", value: "100+", emoji: "⚡" },
-  { label: "Ideas → Reality", value: "∞", emoji: "💡" },
+// AI Tools Arsenal for Vibe Coder
+const aiArsenal = [
+  {
+    name: "Lovable",
+    emoji: "💜",
+    tagline: "Build full apps by chatting",
+    gradient: "from-purple-500/20 to-violet-600/10",
+    border: "border-purple-500/30",
+    glow: "group-hover:shadow-purple-500/20",
+  },
+  {
+    name: "ChatGPT",
+    emoji: "🧠",
+    tagline: "Think, plan & debug with AI",
+    gradient: "from-green-500/20 to-emerald-600/10",
+    border: "border-green-500/30",
+    glow: "group-hover:shadow-green-500/20",
+  },
+  {
+    name: "Cursor",
+    emoji: "⚡",
+    tagline: "AI-first code editor",
+    gradient: "from-blue-500/20 to-cyan-600/10",
+    border: "border-blue-500/30",
+    glow: "group-hover:shadow-blue-500/20",
+  },
+  {
+    name: "Framer",
+    emoji: "🎨",
+    tagline: "Design & prototype fast",
+    gradient: "from-pink-500/20 to-rose-600/10",
+    border: "border-pink-500/30",
+    glow: "group-hover:shadow-pink-500/20",
+  },
+  {
+    name: "Vercel",
+    emoji: "🚀",
+    tagline: "Deploy in seconds",
+    gradient: "from-slate-400/20 to-slate-600/10",
+    border: "border-slate-400/30",
+    glow: "group-hover:shadow-slate-400/20",
+  },
+  {
+    name: "GitHub",
+    emoji: "🐙",
+    tagline: "Version control everything",
+    gradient: "from-orange-500/20 to-amber-600/10",
+    border: "border-orange-500/30",
+    glow: "group-hover:shadow-orange-500/20",
+  },
 ];
 
 const AboutSection = () => {
