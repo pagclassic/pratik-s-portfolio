@@ -7,7 +7,6 @@ const LogoAnimation: React.FC = () => {
   const [isHovered, setIsHovered] = useState(false);
   const { mode } = useMode();
 
-  // Determine which suffix to show
   const suffix = mode === 'vibecoder'
     ? isHovered ? 'roud Vibecoder' : 'ratik'
     : isHovered ? 'ortfolio' : 'ratik';
@@ -25,18 +24,30 @@ const LogoAnimation: React.FC = () => {
         P
       </span>
 
-      {/* Animated suffix */}
+      {/* Wavy animated suffix */}
       <div className="relative overflow-hidden min-w-0">
         <AnimatePresence mode="wait">
           <motion.span
             key={suffix}
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            transition={{ duration: 0.22, ease: 'easeOut' }}
-            className="block text-2xl font-bold whitespace-nowrap text-foreground"
+            className="flex text-2xl font-bold whitespace-nowrap"
           >
-            {suffix}
+            {suffix.split('').map((char, i) => (
+              <motion.span
+                key={i}
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -12 }}
+                transition={{
+                  duration: 0.25,
+                  delay: i * 0.04,
+                  ease: [0.22, 1, 0.36, 1],
+                }}
+                className="inline-block text-foreground"
+                style={{ display: 'inline-block' }}
+              >
+                {char === ' ' ? '\u00A0' : char}
+              </motion.span>
+            ))}
           </motion.span>
         </AnimatePresence>
       </div>
